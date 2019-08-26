@@ -1,6 +1,6 @@
 /*
- * z2se
- * Copyright (C) 2004-2005 emuWorks
+ * Zelda II SRAM Editor
+ * Copyright (C) 2004-2005,2007 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,14 +20,12 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: FileDropTarget.hh,v 1.2 2005/08/04 05:23:21 technoplaza Exp $
+// $Id: FileDropTarget.hh,v 1.5 2007/02/25 08:32:40 technoplaza Exp $
 
 #ifndef _FILE_DROP_TARGET_HH
 #define _FILE_DROP_TARGET_HH
 
 #include <wx/dnd.h>
-
-#include "MainFrame.hh"
 
 namespace emuWorks {
     class MainFrame;
@@ -36,13 +34,16 @@ namespace emuWorks {
      * Class implementing a wxFileDropTarget for the MainFrame class.
      */
     class FileDropTarget : public wxFileDropTarget {
+    private:
+        MainFrame *owner;
+        
     public:
         /**
          * Constructor for the FileDropTarget.
          * 
          * @param owner The MainFrame associated with this FileDropTarget.
          */
-        FileDropTarget(MainFrame *owner) { this->owner = owner; }
+        FileDropTarget(MainFrame *owner) : owner(owner) {}
         
         /**
          * Virtual method called when files are dropped on this target.
@@ -53,8 +54,6 @@ namespace emuWorks {
          */
         virtual bool OnDropFiles(wxCoord x, wxCoord y, 
                                  const wxArrayString &files);
-    private:
-        MainFrame *owner;
     };
 }
 

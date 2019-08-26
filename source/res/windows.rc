@@ -1,6 +1,6 @@
 /*
- * z2se
- * Copyright (C) 2004-2005 emuWorks
+ * Zelda II SRAM Editor
+ * Copyright (C) 2004-2005,2007 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,7 +20,9 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: windows.rc,v 1.3 2005/08/04 05:23:21 technoplaza Exp $
+// $Id: windows.rc,v 1.1 2007/02/24 20:10:01 technoplaza Exp $
 
 IDR_ICON ICON DISCARDABLE "res\\palace.ico"
+
+#include <wx/msw/wx.rc>
 

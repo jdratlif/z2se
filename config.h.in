@@ -6,9 +6,6 @@
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
 
-/* Full Program Name */
-#undef PACKAGE_FULL_NAME
-
 /* Define to the full name of this package. */
 #undef PACKAGE_NAME
 
@@ -23,6 +20,3 @@
 
 /* Version number of package */
 #undef VERSION
-
-/* XRC path */
-#undef XRC_FILE

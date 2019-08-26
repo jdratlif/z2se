@@ -1,6 +1,6 @@
 /*
- * z2se
- * Copyright (C) 2004-2005 emuWorks
+ * Zelda II SRAM Editor
+ * Copyright (C) 2004-2005,2007 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: FileDropTarget.cc,v 1.3 2005/08/04 05:23:21 technoplaza Exp $
+// $Id: FileDropTarget.cc,v 1.6 2007/02/25 08:32:40 technoplaza Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -32,7 +32,8 @@
     #include <wx/wx.h>
 #endif
 
-#include "FileDropTarget.hh"
+#include "view/FileDropTarget.hh"
+#include "view/MainFrame.hh"
 
 using namespace emuWorks;
 
@@ -41,14 +42,10 @@ bool FileDropTarget::OnDropFiles(wxCoord, wxCoord, const wxArrayString &files) {
 
     if (size > 0) {
         wxString filename = files[0];
-
-        #ifdef __WXGTK__
-            filename.Replace("%20", " ");
-        #endif
         
         wxString ext = filename.Mid(filename.Length() - 4);
         
-        if (ext.CmpNoCase(".sav") != 0) {
+        if (ext.CmpNoCase(wxT(".sav")) != 0) {
             wxMessageBox(wxT("Only NES SRAM (*.sav) files can be dropped."),
                          wxT("Error: Invalid File Drop"),
                          wxICON_ERROR | wxOK);

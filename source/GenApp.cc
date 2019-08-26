@@ -1,6 +1,6 @@
 /*
- * z2se
- * Copyright (C) 2004-2005 emuWorks
+ * Zelda II SRAM Editor
+ * Copyright (C) 2004-2005,2007 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: GenApp.cc,v 1.2 2005/08/04 05:23:21 technoplaza Exp $
+// $Id: GenApp.cc,v 1.5 2007/02/25 08:32:40 technoplaza Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -32,8 +32,7 @@
    #include <wx/wx.h>
 #endif
 
-#include <iostream>
-#include <sys/stat.h>
+#include <wx/xrc/xmlres.h>
 
 #include "GenApp.hh"
 #include "view/MainFrame.hh"
@@ -41,47 +40,34 @@
 using namespace emuWorks;
 
 const wxString *GenApp::APP_NAME =
-    new wxString(wxT(PACKAGE_NAME));
+    new wxString(wxT("z2se"));
     
 const wxString *GenApp::APP_FULL_NAME =
-    new wxString(wxT(PACKAGE_FULL_NAME));
+    new wxString(wxT("Zelda II SRAM Editor"));
 
 const wxString *GenApp::APP_VERSION =
-    new wxString(wxT(PACKAGE_VERSION));
+    new wxString(wxT("1.1"));
 
 const wxString *GenApp::APP_COPYRIGHT =
-    new wxString(wxT("Copyright (C) 2004-2005 emuWorks"));
+    new wxString(wxT("Copyright (C) 2004-2005,2007 emuWorks"));
 
 const wxString *GenApp::APP_URL =
     new wxString(wxT("http://games.technoplaza.net/"));
 
-IMPLEMENT_APP(GenApp)
-IMPLEMENT_CLASS(GenApp, wxApp)
+// prototype for InitXmlResource function
+void InitXmlResource();
 
 bool GenApp::OnInit() {
-    wxString *xrcfile;
-    
-    if (argc == 2) {
-        xrcfile = new wxString(argv[1]);
-    } else {
-        xrcfile = new wxString(XRC_FILE);
-    }
-    
-    struct stat xrcstats;
-    
-    if (stat(xrcfile->mb_str(), &xrcstats) != 0) {
-        std::cerr << "error: unable to locate XRC file " << 
-            xrcfile->mb_str() << std::endl;
-        return false;
-    }
-    
+    // initialize the XRC resources
     wxXmlResource::Get()->InitAllHandlers();
-    wxXmlResource::Get()->Load(*xrcfile);
+    InitXmlResource();
     
     MainFrame *frame = new MainFrame;
-    frame->SetTitle(*APP_FULL_NAME + wxT(' ') + *APP_VERSION);
     frame->Show(true);
-    SetTopWindow(frame);
     
     return true;
 }
+
+IMPLEMENT_CLASS(GenApp, wxApp)
+IMPLEMENT_APP(GenApp)
+

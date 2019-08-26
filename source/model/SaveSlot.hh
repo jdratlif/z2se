@@ -1,6 +1,6 @@
 /*
- * z2se
- * Copyright (C) 2004-2005 emuWorks
+ * Zelda II SRAM Editor
+ * Copyright (C) 2004-2005,2007 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: SaveSlot.hh,v 1.5 2005/08/04 05:37:51 technoplaza Exp $
+// $Id: SaveSlot.hh,v 1.8 2007/02/25 08:32:40 technoplaza Exp $
 
 #ifndef _SAVE_SLOT_HH
 #define _SAVE_SLOT_HH
@@ -91,6 +91,35 @@ namespace emuWorks {
      * Class encapsulating a SaveSlot for a Zelda II game.
      */
     class SaveSlot {
+        friend class SRAMFile;
+        
+    private:
+        unsigned char *nvram;
+        bool modified, valid;
+        
+        /**
+         * Sets if this game has been modified or not.
+         */
+        void setModified(bool modified = true) { this->modified = modified; }
+        
+        /**
+         * Translates a character from the Zelda II alphabet to ASCII.
+         *
+         * @param letter The letter to translate.
+         *
+         * @return The translated letter.
+         */
+        static char fromNES(unsigned char letter);
+        
+        /**
+         * Translates a character from ASCII to the Zelda II alphabet.
+         *
+         * @param letter The letter to translate.
+         *
+         * @return The translated letter.
+         */
+        static unsigned char toNES(char letter);
+
     public:
         /**
          * Constructor for a SaveSlot.
@@ -286,36 +315,8 @@ namespace emuWorks {
          * @param value The new number of keys.
          */
         void setKeys(unsigned char value);
-        
-        friend class SRAMFile;
-        
-    private:
-        /**
-         * Sets if this game has been modified or not.
-         */
-        void setModified(bool modified = true) { this->modified = modified; }
-        
-        /**
-         * Translates a character from the Zelda II alphabet to ASCII.
-         *
-         * @param letter The letter to translate.
-         *
-         * @return The translated letter.
-         */
-        static char fromNES(unsigned char letter);
-        
-        /**
-         * Translates a character from ASCII to the Zelda II alphabet.
-         *
-         * @param letter The letter to translate.
-         *
-         * @return The translated letter.
-         */
-        static unsigned char toNES(char letter);
-        
-        unsigned char *nvram;
-        bool modified, valid;
     };
 }
 
 #endif
+

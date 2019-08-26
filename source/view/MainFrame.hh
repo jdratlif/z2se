@@ -1,6 +1,6 @@
 /*
- * z2se
- * Copyright (C) 2004-2005 emuWorks
+ * Zelda II SRAM Editor
+ * Copyright (C) 2004-2005,2007 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,30 +20,32 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: MainFrame.hh,v 1.9 2005/08/04 05:23:21 technoplaza Exp $
+// $Id: MainFrame.hh,v 1.12 2007/02/25 08:32:40 technoplaza Exp $
 
 #ifndef _MAIN_FRAME_HH
 #define _MAIN_FRAME_HH
 
-#include "wx/xrc/xmlres.h"
-#include "wx/frame.h"
-#include "wx/statusbr.h"
-
-#include "model/SRAMFile.hh"
-#include "FileDropTarget.hh"
-
 namespace emuWorks {
-    class MainFrame : public wxFrame {
-    public:
-        MainFrame();    
-        void CreateControls();
-        
-        friend class FileDropTarget;
+    class SRAMFile;
     
-    private:
+    class MainFrame : public wxFrame {
         DECLARE_DYNAMIC_CLASS(MainFrame)
         DECLARE_EVENT_TABLE()
         
+        friend class FileDropTarget;
+        
+    public:
+        /**
+         * Constructs a new MainFrame.
+         */
+        MainFrame();
+        
+        /**
+         * Creates the frame controls.
+         */
+        void CreateControls();
+        
+    private:
         /**
          * Checks if we have an opem SRAM file.
          */
@@ -255,12 +257,8 @@ namespace emuWorks {
         
         wxCheckBox *palaceCheck[6];
         wxSlider *keySlider;
-        
-        /**
-         * XPM icon used for the Frame icon.
-         */
-        static const char *ICON[];
     };
 }
 
 #endif
+

@@ -1,6 +1,6 @@
 /*
- * z2se
- * Copyright (C) 2004-2005 emuWorks
+ * Zelda II SRAM Editor
+ * Copyright (C) 2004-2005,2007 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: SaveSlot.cc,v 1.4 2005/08/04 05:23:21 technoplaza Exp $
+// $Id: SaveSlot.cc,v 1.7 2007/02/25 08:32:40 technoplaza Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -32,7 +32,7 @@
    #include <wx/wx.h>
 #endif
 
-#include "SaveSlot.hh"
+#include "model/SaveSlot.hh"
 
 using namespace emuWorks;
 
@@ -40,11 +40,7 @@ SaveSlot::SaveSlot(const char *nvram) {
     this->nvram = new unsigned char[GAME_SIZE];
     memcpy(this->nvram, nvram, GAME_SIZE);
     
-    if (this->nvram[NAME_OFFSET] == (unsigned char)0xF4) {
-        valid = false;
-    } else {
-        valid = true;
-    }
+    valid = (nvram[NAME_OFFSET] != '\xF4');
     
     setModified(false);
     
@@ -99,7 +95,7 @@ void SaveSlot::setName(wxString &name) {
         unsigned char letter;
         
         if ((length - 1) < pos) {
-            letter = (unsigned char)0xF4;
+            letter = static_cast<unsigned char>(0xF4);
         } else {
             letter = toNES(name.at(pos));
         }
@@ -204,20 +200,21 @@ void SaveSlot::setKeys(unsigned char value) {
 
 char SaveSlot::fromNES(unsigned char letter) {
     if ((letter >= 0xD0) && (letter <= 0xD9)) {
-        return (char)('0' + (letter - 0xD0));
+        return static_cast<char>('0' + (letter - 0xD0));
     } else if ((letter >= 0xDA) && (letter <= 0xF3)) {
-        return (char)('A' + (letter - 0xDA));
+        return static_cast<char>('A' + (letter - 0xDA));
     }
     
-    return (char)' ';
+    return static_cast<char>(' ');
 }
 
 unsigned char SaveSlot::toNES(char letter) {
     if ((letter >= '0') && (letter <= '9')) {
-        return (unsigned char)(0xD0 + (letter - '0'));
+        return static_cast<unsigned char>(0xD0 + (letter - '0'));
     } else if ((letter >= 'A') && (letter <= 'Z')) {
-        return (unsigned char)(0xDA + (letter - 'A'));
+        return static_cast<unsigned char>(0xDA + (letter - 'A'));
     }
     
-    return (unsigned char)0xF4;
+    return static_cast<unsigned char>(0xF4);
 }
+

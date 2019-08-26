@@ -1,6 +1,6 @@
 /*
- * z2se
- * Copyright (C) 2004-2005 emuWorks
+ * Zelda II SRAM Editor
+ * Copyright (C) 2004-2005,2007 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: SRAMFile.hh,v 1.3 2005/08/04 05:23:21 technoplaza Exp $
+// $Id: SRAMFile.hh,v 1.6 2007/02/25 08:32:40 technoplaza Exp $
 
 #ifndef _SRAM_FILE_HH
 #define _SRAM_FILE_HH
@@ -31,13 +31,26 @@
 /// The starting offset of the games within the SRAM file
 #define GAME_OFFSET 0x1402
 
-#include "SaveSlot.hh"
-
 namespace emuWorks {
+    class SaveSlot;
+    
     /**
      * Class to encapsulate an SRAM file.
      */
     class SRAMFile {
+    private:
+        wxString *file;
+        SaveSlot *games[3];
+        int current;
+        char *data;
+        
+        /**
+         * Loads the SRAM data from a file.
+         *
+         * @param filename The file to load SRAM data from.
+         */
+        void load(wxString &filename);
+        
     public:
         /**
          * Constructor for an SRAMFile object.
@@ -98,21 +111,8 @@ namespace emuWorks {
          * @return true if the data was saved; false otherwise.
          */
         bool save(wxString &filename);
-        
-    private:
-        /**
-         * Loads the SRAM data from a file.
-         *
-         * @param filename The file to load SRAM data from.
-         */
-        void load(wxString &filename);
-    
-        wxString *file;
-        char *data;
-        
-        int current;
-        SaveSlot *games[3];
     };
 }
 
 #endif
+

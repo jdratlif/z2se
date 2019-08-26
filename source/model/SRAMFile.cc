@@ -1,6 +1,6 @@
 /*
- * z2se
- * Copyright (C) 2004-2005 emuWorks
+ * Zelda II SRAM Editor
+ * Copyright (C) 2004-2005,2007 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: SRAMFile.cc,v 1.3 2005/08/04 05:23:21 technoplaza Exp $
+// $Id: SRAMFile.cc,v 1.6 2007/02/25 08:32:40 technoplaza Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -32,10 +32,11 @@
    #include <wx/wx.h>
 #endif
 
-#include <fstream>
 #include <cstring>
+#include <fstream>
 
-#include "SRAMFile.hh"
+#include "model/SaveSlot.hh"
+#include "model/SRAMFile.hh"
 
 using namespace emuWorks;
 
@@ -167,7 +168,7 @@ void SRAMFile::load(wxString &filename) {
     file = new wxString(filename);
     
     if (current != -1) {
-        wxString bakfile = filename + ".bak";
+        wxString bakfile = filename + wxT(".bak");
         std::ofstream out(bakfile.mb_str(), std::ios::out | std::ios::binary);
         
         if (out) {
@@ -176,3 +177,4 @@ void SRAMFile::load(wxString &filename) {
         }
     }
 }
+

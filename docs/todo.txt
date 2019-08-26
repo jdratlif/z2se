@@ -1,6 +1,5 @@
 z2se todo list
 
-- need documentation readme
 - SRAM document
 - places you find items (magic containers, life containers)
   those offsets should be fixed, or a crash could occur.

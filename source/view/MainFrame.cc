@@ -1,6 +1,6 @@
 /*
- * z2se
- * Copyright (C) 2004-2005 emuWorks
+ * Zelda II SRAM Editor
+ * Copyright (C) 2004-2005,2007 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: MainFrame.cc,v 1.10 2005/08/04 05:37:51 technoplaza Exp $
+// $Id: MainFrame.cc,v 1.13 2007/02/25 08:32:40 technoplaza Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -32,127 +32,37 @@
    #include <wx/wx.h>
 #endif
 
-#include "MainFrame.hh"
-#include "../GenApp.hh"
+#include <wx/xrc/xmlres.h>
+
+#include "GenApp.hh"
+#include "model/SaveSlot.hh"
+#include "model/SRAMFile.hh"
+#include "res/palace.xpm"
+#include "view/FileDropTarget.hh"
+#include "view/MainFrame.hh"
 
 using namespace emuWorks;
-
-const char *MainFrame::ICON[] = {
-    "16 16 4 1",
-    " 	c None",
-    "!	c #F0BC3C",
-    "#	c #FCFCFC",
-    "$	c black",
-    "!!!!!!!!!!!!!!!!",
-    "##############$!",
-    "$$$$$$$$$$$$$$$!",
-    "!$#$#$#$#$#$#$!!",
-    "!!$$$$$$$$$$$!!!",
-    "!!#$!#$!#$!#$!!!",
-    "!!#$!#$!#$!#$!!!",
-    "!!#$!#$!#$!#$!!!",
-    "!!#$!#$!#$!#$!!!",
-    "!!#$!#$!#$!#$!!!",
-    "!$$$$$$$$$$$$$!!",
-    "!############$!!",
-    "$$$$$$$$$$$$$$$!",
-    "##############$!",
-    "$$$$$$$$$$$$$$$!",
-    "!!!!!!!!!!!!!!!!"
-};
-
-IMPLEMENT_DYNAMIC_CLASS(MainFrame, wxFrame)
-
-BEGIN_EVENT_TABLE(MainFrame, wxFrame)
-    EVT_CLOSE(MainFrame::windowClosing)
-
-    EVT_MENU(XRCID("IDM_FILE_OPEN"), MainFrame::fileOpen)
-    EVT_MENU(XRCID("IDM_FILE_CLOSE"), MainFrame::fileClose)
-    EVT_MENU(XRCID("IDM_FILE_SAVE"), MainFrame::fileSave)
-    EVT_MENU(XRCID("IDM_FILE_SAVE_AS"), MainFrame::fileSaveAs)
-    EVT_MENU(XRCID("IDM_FILE_EXIT"), MainFrame::fileExit)
-    
-    EVT_MENU(XRCID("IDM_GAME_ONE"), MainFrame::gameChange)
-    EVT_MENU(XRCID("IDM_GAME_TWO"), MainFrame::gameChange)
-    EVT_MENU(XRCID("IDM_GAME_THREE"), MainFrame::gameChange)
-    
-    EVT_MENU(XRCID("IDM_HAVE_ALL_LEVELS"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_ALL_CONTAINERS"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_ALL_TECHNIQUES"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_ALL_SPELLS"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_ALL_ITEMS"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_ALL_SEALS"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_ALL_KEYS"), MainFrame::multiChange)
-    
-    EVT_MENU(XRCID("IDM_HAVE_NONE_LEVELS"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_NONE_CONTAINERS"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_NONE_TECHNIQUES"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_NONE_SPELLS"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_NONE_ITEMS"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_NONE_SEALS"), MainFrame::multiChange)
-    EVT_MENU(XRCID("IDM_HAVE_NONE_KEYS"), MainFrame::multiChange)
-    
-    EVT_MENU(XRCID("IDM_HELP_ABOUT"), MainFrame::helpAbout)
-    
-    EVT_TEXT(XRCID("ID_NAME"), MainFrame::nameChange)
-    EVT_COMMAND_SCROLL(XRCID("ID_PLAY_COUNT"), MainFrame::playCountChange)
-    EVT_CHECKBOX(XRCID("ID_TRIFORCE"), MainFrame::triforceChange)
-    
-    EVT_COMMAND_SCROLL(XRCID("ID_SWORD_LEVEL"), MainFrame::levelChange)
-    EVT_COMMAND_SCROLL(XRCID("ID_MAGIC_LEVEL"), MainFrame::levelChange)
-    EVT_COMMAND_SCROLL(XRCID("ID_LIFE_LEVEL"), MainFrame::levelChange)
-    
-    EVT_COMMAND_SCROLL(XRCID("ID_MAGIC_CONTAINER"), MainFrame::containerChange)
-    EVT_COMMAND_SCROLL(XRCID("ID_LIFE_CONTAINER"), MainFrame::containerChange)
-    
-    EVT_CHECKBOX(XRCID("ID_DOWNWARD_THRUST"), MainFrame::techniqueChange)
-    EVT_CHECKBOX(XRCID("ID_UPWARD_THRUST"), MainFrame::techniqueChange)    
-    
-    EVT_CHECKBOX(XRCID("ID_SHIELD"), MainFrame::spellChange)
-    EVT_CHECKBOX(XRCID("ID_JUMP"), MainFrame::spellChange)
-    EVT_CHECKBOX(XRCID("ID_LIFE"), MainFrame::spellChange)
-    EVT_CHECKBOX(XRCID("ID_FAIRY"), MainFrame::spellChange)
-    EVT_CHECKBOX(XRCID("ID_FIRE"), MainFrame::spellChange)
-    EVT_CHECKBOX(XRCID("ID_REFLECT"), MainFrame::spellChange)
-    EVT_CHECKBOX(XRCID("ID_SPELL"), MainFrame::spellChange)
-    EVT_CHECKBOX(XRCID("ID_THUNDER"), MainFrame::spellChange)
-    
-    EVT_CHECKBOX(XRCID("ID_CANDLE"), MainFrame::itemChange)
-    EVT_CHECKBOX(XRCID("ID_GLOVE"), MainFrame::itemChange)
-    EVT_CHECKBOX(XRCID("ID_RAFT"), MainFrame::itemChange)
-    EVT_CHECKBOX(XRCID("ID_BOOTS"), MainFrame::itemChange)
-    EVT_CHECKBOX(XRCID("ID_CROSS"), MainFrame::itemChange)
-    EVT_CHECKBOX(XRCID("ID_FLUTE"), MainFrame::itemChange)
-    EVT_CHECKBOX(XRCID("ID_MAGIC_KEY"), MainFrame::itemChange)
-    EVT_CHECKBOX(XRCID("ID_HAMMER"), MainFrame::itemChange)
-    
-    EVT_CHECKBOX(XRCID("ID_PARAPA"), MainFrame::sealChange)
-    EVT_CHECKBOX(XRCID("ID_MIDORO"), MainFrame::sealChange)
-    EVT_CHECKBOX(XRCID("ID_ISLAND"), MainFrame::sealChange)
-    EVT_CHECKBOX(XRCID("ID_MAZE"), MainFrame::sealChange)
-    EVT_CHECKBOX(XRCID("ID_SEA"), MainFrame::sealChange)
-    EVT_CHECKBOX(XRCID("ID_THREE_EYE_ROCK"), MainFrame::sealChange)
-    
-    EVT_COMMAND_SCROLL(XRCID("ID_KEY"), MainFrame::keyChange)
-END_EVENT_TABLE()
 
 MainFrame::MainFrame() {
     SetParent(NULL);
     CreateControls();
+    GetSizer()->SetSizeHints(this);
     Centre();
+    
+    panel->Show(false);
     
     SetDropTarget(new FileDropTarget(this));
 }
 
 void MainFrame::CreateControls() {
-    wxXmlResource::Get()->LoadFrame(this, GetParent(), wxT("ID_FRAME"));
-    SetIcon(ICON);
+    wxXmlResource::Get()->LoadFrame(this, GetParent(), wxT("IDF_FRAME"));
+    SetIcon(palace_xpm);
     
     wxMenuBar *menubar = GetMenuBar();
     
-    fileCloseItem = menubar->FindItem(XRCID("IDM_FILE_CLOSE"));
-    fileSaveItem = menubar->FindItem(XRCID("IDM_FILE_SAVE"));
-    fileSaveAsItem = menubar->FindItem(XRCID("IDM_FILE_SAVE_AS"));
+    fileCloseItem = menubar->FindItem(wxID_CLOSE);
+    fileSaveItem = menubar->FindItem(wxID_SAVE);
+    fileSaveAsItem = menubar->FindItem(wxID_SAVEAS);
     
     gameItems[0] = menubar->FindItem(XRCID("IDM_GAME_ONE"));
     gameItems[0]->Enable(false);
@@ -163,60 +73,69 @@ void MainFrame::CreateControls() {
     gameItems[2] = menubar->FindItem(XRCID("IDM_GAME_THREE"));
     gameItems[2]->Enable(false);
 
-    panel = XRCCTRL(*this, "ID_PANEL", wxPanel);
-    panel->Show(false);
+    panel = XRCCTRL(*this, "IDP_PANEL", wxPanel);
     
-    wxStringList letters("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
-                         "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
-                         "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6",
-                         "7", "8", "9", " ", NULL);
+    wxArrayString letters;
+    letters.Add(wxT("A")); letters.Add(wxT("B")); letters.Add(wxT("C"));
+    letters.Add(wxT("D")); letters.Add(wxT("E")); letters.Add(wxT("F"));
+    letters.Add(wxT("G")); letters.Add(wxT("H")); letters.Add(wxT("I"));
+    letters.Add(wxT("J")); letters.Add(wxT("K")); letters.Add(wxT("L"));
+    letters.Add(wxT("M")); letters.Add(wxT("N")); letters.Add(wxT("O"));
+    letters.Add(wxT("P")); letters.Add(wxT("Q")); letters.Add(wxT("R"));
+    letters.Add(wxT("S")); letters.Add(wxT("T")); letters.Add(wxT("U"));
+    letters.Add(wxT("V")); letters.Add(wxT("W")); letters.Add(wxT("X"));
+    letters.Add(wxT("Y")); letters.Add(wxT("Z")); letters.Add(wxT("0"));
+    letters.Add(wxT("1")); letters.Add(wxT("2")); letters.Add(wxT("3"));
+    letters.Add(wxT("4")); letters.Add(wxT("5")); letters.Add(wxT("6"));
+    letters.Add(wxT("7")); letters.Add(wxT("8")); letters.Add(wxT("9"));
+    letters.Add(wxT(" "));
 
     wxTextValidator nameValidator(wxFILTER_INCLUDE_CHAR_LIST);
-    nameValidator.SetIncludeList(letters);
+    nameValidator.SetIncludes(letters);
     
-    nameText = XRCCTRL(*this, "ID_NAME", wxTextCtrl);
+    nameText = XRCCTRL(*this, "IDT_NAME", wxTextCtrl);
     nameText->SetValidator(nameValidator);
     nameText->SetMaxLength(8);
     
-    playCountSlider = XRCCTRL(*this, "ID_PLAY_COUNT", wxSlider);
-    triforceCheck = XRCCTRL(*this, "ID_TRIFORCE", wxCheckBox);
+    playCountSlider = XRCCTRL(*this, "IDS_PLAY_COUNT", wxSlider);
+    triforceCheck = XRCCTRL(*this, "IDC_TRIFORCE", wxCheckBox);
 
-    swordLevelSlider = XRCCTRL(*this, "ID_SWORD_LEVEL", wxSlider);
-    magicLevelSlider = XRCCTRL(*this, "ID_MAGIC_LEVEL", wxSlider);
-    lifeLevelSlider = XRCCTRL(*this, "ID_LIFE_LEVEL", wxSlider);
+    swordLevelSlider = XRCCTRL(*this, "IDS_SWORD_LEVEL", wxSlider);
+    magicLevelSlider = XRCCTRL(*this, "IDS_MAGIC_LEVEL", wxSlider);
+    lifeLevelSlider = XRCCTRL(*this, "IDS_LIFE_LEVEL", wxSlider);
 
-    magicContainerSlider = XRCCTRL(*this, "ID_MAGIC_CONTAINER", wxSlider);
-    lifeContainerSlider = XRCCTRL(*this, "ID_LIFE_CONTAINER", wxSlider);
+    magicContainerSlider = XRCCTRL(*this, "IDS_MAGIC_CONTAINER", wxSlider);
+    lifeContainerSlider = XRCCTRL(*this, "IDS_LIFE_CONTAINER", wxSlider);
 
-    downwardThrustCheck = XRCCTRL(*this, "ID_DOWNWARD_THRUST", wxCheckBox);
-    upwardThrustCheck = XRCCTRL(*this, "ID_UPWARD_THRUST", wxCheckBox);
+    downwardThrustCheck = XRCCTRL(*this, "IDC_DOWNWARD_THRUST", wxCheckBox);
+    upwardThrustCheck = XRCCTRL(*this, "IDC_UPWARD_THRUST", wxCheckBox);
 
-    shieldCheck = XRCCTRL(*this, "ID_SHIELD", wxCheckBox);
-    jumpCheck = XRCCTRL(*this, "ID_JUMP", wxCheckBox);
-    lifeCheck = XRCCTRL(*this, "ID_LIFE", wxCheckBox);
-    fairyCheck = XRCCTRL(*this, "ID_FAIRY", wxCheckBox);
-    fireCheck = XRCCTRL(*this, "ID_FIRE", wxCheckBox);
-    reflectCheck = XRCCTRL(*this, "ID_REFLECT", wxCheckBox);
-    spellCheck = XRCCTRL(*this, "ID_SPELL", wxCheckBox);
-    thunderCheck = XRCCTRL(*this, "ID_THUNDER", wxCheckBox);
+    shieldCheck = XRCCTRL(*this, "IDC_SHIELD", wxCheckBox);
+    jumpCheck = XRCCTRL(*this, "IDC_JUMP", wxCheckBox);
+    lifeCheck = XRCCTRL(*this, "IDC_LIFE", wxCheckBox);
+    fairyCheck = XRCCTRL(*this, "IDC_FAIRY", wxCheckBox);
+    fireCheck = XRCCTRL(*this, "IDC_FIRE", wxCheckBox);
+    reflectCheck = XRCCTRL(*this, "IDC_REFLECT", wxCheckBox);
+    spellCheck = XRCCTRL(*this, "IDC_SPELL", wxCheckBox);
+    thunderCheck = XRCCTRL(*this, "IDC_THUNDER", wxCheckBox);
     
-    candleCheck = XRCCTRL(*this, "ID_CANDLE", wxCheckBox);
-    gloveCheck = XRCCTRL(*this, "ID_GLOVE", wxCheckBox);
-    raftCheck = XRCCTRL(*this, "ID_RAFT", wxCheckBox);
-    bootsCheck = XRCCTRL(*this, "ID_BOOTS", wxCheckBox);
-    crossCheck = XRCCTRL(*this, "ID_CROSS", wxCheckBox);
-    fluteCheck = XRCCTRL(*this, "ID_FLUTE", wxCheckBox);
-    magicKeyCheck = XRCCTRL(*this, "ID_MAGIC_KEY", wxCheckBox);
-    hammerCheck = XRCCTRL(*this, "ID_HAMMER", wxCheckBox);
+    candleCheck = XRCCTRL(*this, "IDC_CANDLE", wxCheckBox);
+    gloveCheck = XRCCTRL(*this, "IDC_GLOVE", wxCheckBox);
+    raftCheck = XRCCTRL(*this, "IDC_RAFT", wxCheckBox);
+    bootsCheck = XRCCTRL(*this, "IDC_BOOTS", wxCheckBox);
+    crossCheck = XRCCTRL(*this, "IDC_CROSS", wxCheckBox);
+    fluteCheck = XRCCTRL(*this, "IDC_FLUTE", wxCheckBox);
+    magicKeyCheck = XRCCTRL(*this, "IDC_MAGIC_KEY", wxCheckBox);
+    hammerCheck = XRCCTRL(*this, "IDC_HAMMER", wxCheckBox);
     
-    palaceCheck[0] = XRCCTRL(*this, "ID_PARAPA", wxCheckBox);
-    palaceCheck[1] = XRCCTRL(*this, "ID_MIDORO", wxCheckBox);
-    palaceCheck[2] = XRCCTRL(*this, "ID_ISLAND", wxCheckBox);
-    palaceCheck[3] = XRCCTRL(*this, "ID_MAZE", wxCheckBox);
-    palaceCheck[4] = XRCCTRL(*this, "ID_SEA", wxCheckBox);
-    palaceCheck[5] = XRCCTRL(*this, "ID_THREE_EYE_ROCK", wxCheckBox);
+    palaceCheck[0] = XRCCTRL(*this, "IDC_PARAPA", wxCheckBox);
+    palaceCheck[1] = XRCCTRL(*this, "IDC_MIDORO", wxCheckBox);
+    palaceCheck[2] = XRCCTRL(*this, "IDC_ISLAND", wxCheckBox);
+    palaceCheck[3] = XRCCTRL(*this, "IDC_MAZE", wxCheckBox);
+    palaceCheck[4] = XRCCTRL(*this, "IDC_SEA", wxCheckBox);
+    palaceCheck[5] = XRCCTRL(*this, "IDC_THREE_EYE_ROCK", wxCheckBox);
     
-    keySlider = XRCCTRL(*this, "ID_KEY", wxSlider);
+    keySlider = XRCCTRL(*this, "IDS_KEY", wxSlider);
     
     setOpen(false);
 }
@@ -341,7 +260,7 @@ void MainFrame::load(wxString &filename) {
 
 void MainFrame::fileOpen(wxCommandEvent &) {
     static wxFileDialog *dlg = new wxFileDialog(this, 
-        wxT("Choose a .SAV File"), "", "", 
+        wxT("Choose a .SAV File"), wxT(""), wxT(""), 
         wxT("NES SRAM File (*.sav)|*.sav"), (wxOPEN | wxCHANGE_DIR));
         
     int value = dlg->ShowModal();
@@ -362,7 +281,7 @@ void MainFrame::fileSave(wxCommandEvent &) {
 
 void MainFrame::fileSaveAs(wxCommandEvent &) {
     static wxFileDialog *dlg = new wxFileDialog(this,
-        wxT("Choose a .SAV File"), "", "",
+        wxT("Choose a .SAV File"), wxT(""), wxT(""),
         wxT("NES SRAM File (*.sav)|*.sav"), (wxSAVE | wxCHANGE_DIR));
 
     int value = dlg->ShowModal();
@@ -760,4 +679,79 @@ void MainFrame::keyChange(wxScrollEvent &) {
     SaveSlot *game = sram->getCurrentGame();
     game->setKeys(keySlider->GetValue());
 }
+
+IMPLEMENT_DYNAMIC_CLASS(MainFrame, wxFrame)
+
+BEGIN_EVENT_TABLE(MainFrame, wxFrame)
+    EVT_CLOSE(MainFrame::windowClosing)
+
+    EVT_MENU(wxID_OPEN, MainFrame::fileOpen)
+    EVT_MENU(wxID_CLOSE, MainFrame::fileClose)
+    EVT_MENU(wxID_SAVE, MainFrame::fileSave)
+    EVT_MENU(wxID_SAVEAS, MainFrame::fileSaveAs)
+    EVT_MENU(wxID_EXIT, MainFrame::fileExit)
+    
+    EVT_MENU(XRCID("IDM_GAME_ONE"), MainFrame::gameChange)
+    EVT_MENU(XRCID("IDM_GAME_TWO"), MainFrame::gameChange)
+    EVT_MENU(XRCID("IDM_GAME_THREE"), MainFrame::gameChange)
+    
+    EVT_MENU(XRCID("IDM_HAVE_ALL_LEVELS"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_ALL_CONTAINERS"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_ALL_TECHNIQUES"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_ALL_SPELLS"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_ALL_ITEMS"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_ALL_SEALS"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_ALL_KEYS"), MainFrame::multiChange)
+    
+    EVT_MENU(XRCID("IDM_HAVE_NONE_LEVELS"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_NONE_CONTAINERS"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_NONE_TECHNIQUES"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_NONE_SPELLS"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_NONE_ITEMS"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_NONE_SEALS"), MainFrame::multiChange)
+    EVT_MENU(XRCID("IDM_HAVE_NONE_KEYS"), MainFrame::multiChange)
+    
+    EVT_MENU(wxID_ABOUT, MainFrame::helpAbout)
+    
+    EVT_TEXT(XRCID("IDT_NAME"), MainFrame::nameChange)
+    EVT_COMMAND_SCROLL(XRCID("IDS_PLAY_COUNT"), MainFrame::playCountChange)
+    EVT_CHECKBOX(XRCID("IDC_TRIFORCE"), MainFrame::triforceChange)
+    
+    EVT_COMMAND_SCROLL(XRCID("IDS_SWORD_LEVEL"), MainFrame::levelChange)
+    EVT_COMMAND_SCROLL(XRCID("IDS_MAGIC_LEVEL"), MainFrame::levelChange)
+    EVT_COMMAND_SCROLL(XRCID("IDS_LIFE_LEVEL"), MainFrame::levelChange)
+    
+    EVT_COMMAND_SCROLL(XRCID("IDS_MAGIC_CONTAINER"), MainFrame::containerChange)
+    EVT_COMMAND_SCROLL(XRCID("IDS_LIFE_CONTAINER"), MainFrame::containerChange)
+    
+    EVT_CHECKBOX(XRCID("IDC_DOWNWARD_THRUST"), MainFrame::techniqueChange)
+    EVT_CHECKBOX(XRCID("IDC_UPWARD_THRUST"), MainFrame::techniqueChange)    
+    
+    EVT_CHECKBOX(XRCID("IDC_SHIELD"), MainFrame::spellChange)
+    EVT_CHECKBOX(XRCID("IDC_JUMP"), MainFrame::spellChange)
+    EVT_CHECKBOX(XRCID("IDC_LIFE"), MainFrame::spellChange)
+    EVT_CHECKBOX(XRCID("IDC_FAIRY"), MainFrame::spellChange)
+    EVT_CHECKBOX(XRCID("IDC_FIRE"), MainFrame::spellChange)
+    EVT_CHECKBOX(XRCID("IDC_REFLECT"), MainFrame::spellChange)
+    EVT_CHECKBOX(XRCID("IDC_SPELL"), MainFrame::spellChange)
+    EVT_CHECKBOX(XRCID("IDC_THUNDER"), MainFrame::spellChange)
+    
+    EVT_CHECKBOX(XRCID("IDC_CANDLE"), MainFrame::itemChange)
+    EVT_CHECKBOX(XRCID("IDC_GLOVE"), MainFrame::itemChange)
+    EVT_CHECKBOX(XRCID("IDC_RAFT"), MainFrame::itemChange)
+    EVT_CHECKBOX(XRCID("IDC_BOOTS"), MainFrame::itemChange)
+    EVT_CHECKBOX(XRCID("IDC_CROSS"), MainFrame::itemChange)
+    EVT_CHECKBOX(XRCID("IDC_FLUTE"), MainFrame::itemChange)
+    EVT_CHECKBOX(XRCID("IDC_MAGIC_KEY"), MainFrame::itemChange)
+    EVT_CHECKBOX(XRCID("IDC_HAMMER"), MainFrame::itemChange)
+    
+    EVT_CHECKBOX(XRCID("IDC_PARAPA"), MainFrame::sealChange)
+    EVT_CHECKBOX(XRCID("IDC_MIDORO"), MainFrame::sealChange)
+    EVT_CHECKBOX(XRCID("IDC_ISLAND"), MainFrame::sealChange)
+    EVT_CHECKBOX(XRCID("IDC_MAZE"), MainFrame::sealChange)
+    EVT_CHECKBOX(XRCID("IDC_SEA"), MainFrame::sealChange)
+    EVT_CHECKBOX(XRCID("IDC_THREE_EYE_ROCK"), MainFrame::sealChange)
+    
+    EVT_COMMAND_SCROLL(XRCID("IDS_KEY"), MainFrame::keyChange)
+END_EVENT_TABLE()
 
