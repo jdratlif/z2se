@@ -1,5 +1,5 @@
 dnl Initialize autoconf
-AC_INIT([z2se], [0.90], [emuWorks@technoplaza.net])
+AC_INIT([z2se], [1.0], [emuWorks@technoplaza.net])
 
 dnl require autoconf >= 2.57
 AC_PREREQ([2.57])
@@ -56,3 +56,4 @@ fi
 dnl configure files to produce
 AC_CONFIG_FILES([Makefile source/Makefile])
 AC_OUTPUT
+

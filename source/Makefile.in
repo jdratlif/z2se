@@ -172,7 +172,9 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 AUTOMAKE_OPTIONS = subdir-objects
-EXTRA_DIST = xrc/z2se.xrc
+EXTRA_DIST = xrc/z2se.xrc res/palace.ico res/palace.xpm res/palace16x16.bmp \
+             res/palace32x32.bmp
+
 z2se_SOURCES = GenApp.cc GenApp.hh \
 	view/MainFrame.cc view/MainFrame.hh \
 	view/FileDropTarget.cc view/FileDropTarget.hh \
@@ -403,7 +405,7 @@ distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
-	$(mkdir_p) $(distdir)/xrc
+	$(mkdir_p) $(distdir)/res $(distdir)/xrc
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

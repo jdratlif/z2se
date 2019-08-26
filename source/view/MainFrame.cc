@@ -1,23 +1,26 @@
 /*
- * Copyright (C) 2004 emuWorks
+ * z2se
+ * Copyright (C) 2004-2005 emuWorks
  * http://games.technoplaza.net/
  *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * This file is part of z2se.
  *
- * This program is distributed in the hope that it will be useful,
+ * z2se is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * z2se is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ * along with z2se; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: MainFrame.cc,v 1.8 2004/12/10 16:10:32 technoplaza Exp $
+// $Id: MainFrame.cc,v 1.10 2005/08/04 05:37:51 technoplaza Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -336,7 +339,7 @@ void MainFrame::load(wxString &filename) {
     }
 }
 
-void MainFrame::fileOpen(wxCommandEvent &event) {
+void MainFrame::fileOpen(wxCommandEvent &) {
     static wxFileDialog *dlg = new wxFileDialog(this, 
         wxT("Choose a .SAV File"), "", "", 
         wxT("NES SRAM File (*.sav)|*.sav"), (wxOPEN | wxCHANGE_DIR));
@@ -349,15 +352,15 @@ void MainFrame::fileOpen(wxCommandEvent &event) {
     }
 }
 
-void MainFrame::fileClose(wxCommandEvent &event) {
+void MainFrame::fileClose(wxCommandEvent &) {
     close();
 }
 
-void MainFrame::fileSave(wxCommandEvent &event) {
+void MainFrame::fileSave(wxCommandEvent &) {
     sram->save();
 }
 
-void MainFrame::fileSaveAs(wxCommandEvent &event) {
+void MainFrame::fileSaveAs(wxCommandEvent &) {
     static wxFileDialog *dlg = new wxFileDialog(this,
         wxT("Choose a .SAV File"), "", "",
         wxT("NES SRAM File (*.sav)|*.sav"), (wxSAVE | wxCHANGE_DIR));
@@ -370,7 +373,7 @@ void MainFrame::fileSaveAs(wxCommandEvent &event) {
     }
 }
 
-void MainFrame::fileExit(wxCommandEvent &event) {
+void MainFrame::fileExit(wxCommandEvent &) {
     if (close()) {
         Close(true);
     }
@@ -586,7 +589,7 @@ void MainFrame::multiChange(wxCommandEvent &event) {
     }
 }
 
-void MainFrame::helpAbout(wxCommandEvent &event) {
+void MainFrame::helpAbout(wxCommandEvent &) {
     wxString msg = wxString(*GenApp::APP_FULL_NAME + wxT(' ') + 
                             *GenApp::APP_VERSION + wxT('\n') +
                             *GenApp::APP_COPYRIGHT + wxT('\n') +
@@ -598,7 +601,7 @@ void MainFrame::helpAbout(wxCommandEvent &event) {
     wxMessageBox(msg, title, wxOK | wxICON_INFORMATION, this);
 }
 
-void MainFrame::nameChange(wxCommandEvent &event) {
+void MainFrame::nameChange(wxCommandEvent &) {
     if (!isOpen()) {
         return;
     }
@@ -608,7 +611,7 @@ void MainFrame::nameChange(wxCommandEvent &event) {
     game->setName(name);
 }
 
-void MainFrame::playCountChange(wxScrollEvent &event) {
+void MainFrame::playCountChange(wxScrollEvent &) {
     if (!isOpen()) {
         return;
     }
@@ -617,7 +620,7 @@ void MainFrame::playCountChange(wxScrollEvent &event) {
     game->setPlayCount(playCountSlider->GetValue());
 }
 
-void MainFrame::triforceChange(wxCommandEvent &event) {
+void MainFrame::triforceChange(wxCommandEvent &) {
     if (!isOpen()) {
         return;
     }
@@ -660,9 +663,6 @@ void MainFrame::containerChange(wxScrollEvent &event) {
 }
 
 void MainFrame::techniqueChange(wxCommandEvent &event) {
-    printf("technique change...\n");
-    fflush(stdout);
-    
     if (!isOpen()) {
         return;
     }
@@ -752,7 +752,7 @@ void MainFrame::sealChange(wxCommandEvent &event) {
     game->setSeal(palace, ctrl->IsChecked());
 }
 
-void MainFrame::keyChange(wxScrollEvent &event) {
+void MainFrame::keyChange(wxScrollEvent &) {
     if (!isOpen()) {
         return;
     }

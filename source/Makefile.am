@@ -2,7 +2,8 @@
 	windres -o $@ $<
 
 AUTOMAKE_OPTIONS = subdir-objects
-EXTRA_DIST = xrc/z2se.xrc
+EXTRA_DIST = xrc/z2se.xrc res/palace.ico res/palace.xpm res/palace16x16.bmp \
+             res/palace32x32.bmp
 
 bin_PROGRAMS = z2se
 z2se_SOURCES = GenApp.cc GenApp.hh \

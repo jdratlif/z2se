@@ -1,23 +1,26 @@
 /*
- * Copyright (C) 2004 emuWorks
+ * z2se
+ * Copyright (C) 2004-2005 emuWorks
  * http://games.technoplaza.net/
  *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * This file is part of z2se.
  *
- * This program is distributed in the hope that it will be useful,
+ * z2se is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * z2se is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ * along with z2se; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: SaveSlot.hh,v 1.3 2004/12/10 10:01:43 technoplaza Exp $
+// $Id: SaveSlot.hh,v 1.5 2005/08/04 05:37:51 technoplaza Exp $
 
 #ifndef _SAVE_SLOT_HH
 #define _SAVE_SLOT_HH
@@ -63,27 +66,27 @@ namespace emuWorks {
     enum Levels {
         SWORDLEVEL, MAGICLEVEL, LIFELEVEL
     };
-
+    
     /// The spells that can be learned
     enum Spells {
         SHIELD, JUMP, LIFE, FAIRY, FIRE, REFLECT, SPELL, THUNDER
     };
-
+    
     /// The containers
     enum Containers {
         MAGICCONTAINER, LIFECONTAINER
     };
-
+    
     /// The game items
     enum Items {
         CANDLE, GLOVE, RAFT, BOOTS, CROSS, FLUTE, MAGICKEY, HAMMER
     };
-
+    
     /// The sword techniques
     enum Techniques {
         DOWNWARDTHRUST = 0x10, UPWARDTHRUST = 0x04
     };
-
+    
     /**
      * Class encapsulating a SaveSlot for a Zelda II game.
      */
@@ -95,26 +98,26 @@ namespace emuWorks {
          * @param nvram The SRAM data for this SaveSlot.
          */
         SaveSlot(const char *nvram);
-
+        
         /**
          * Destructor for a SaveSlot object.
          */
         ~SaveSlot();
-
+        
         /**
          * Queries if this SaveSlot has been modified;
          *
          * @return true if modified; false otherwise.
          */
         bool isModified() const { return modified; }
-
+        
         /**
          * Queries if this SaveSlot is valid.
          *
          * @return true if valid; false otherwise.
          */
         bool isValid() const { return valid; }
-
+        
         /**
          * Fixes data for a new quest game.
          */
@@ -126,42 +129,42 @@ namespace emuWorks {
          * @return The name.
          */
         wxString getName() const;
-
+        
         /**
          * Sets the name of the character.
          *
          * @param value The new name.
          */
         void setName(wxString &value);
-
+        
         /**
          * Gets the play count.
          *
          * @return The play count.
          */
         int getPlayCount() const;
-
+        
         /**
          * Sets the play count.
          *
          * @param value The new play count.
          */
         void setPlayCount(unsigned char value);
-
+        
         /**
          * Queries if the player has saved the Triforce before.
          *
          * @return true if they have; false otherwise.
          */
         bool hasTriforce() const;
-
+        
         /**
          * Sets whether this player has saved the Triforce before.
          *
          * @param value true if they have; false otherwise.
          */
         void setTriforce(bool value);
-
+        
         /**
          * Gets one of the experience level elements.
          *
@@ -171,7 +174,7 @@ namespace emuWorks {
          * @return The experience level.
          */
         int getLevel(int which) const;
-
+        
         /**
          * Sets one of the experience level elements.
          *
@@ -180,7 +183,7 @@ namespace emuWorks {
          * @param value The new experience level.
          */
         void setLevel(int which, unsigned char value);
-
+        
         /**
          * Gets one of the container values.
          *
@@ -190,7 +193,7 @@ namespace emuWorks {
          * @return The number of containers.
          */
         int getContainers(int which) const;
-
+        
         /**
          * Sets one of the container values.
          *
@@ -199,7 +202,7 @@ namespace emuWorks {
          * @param value The new container value.
          */
         void setContainers(int which, unsigned char value);
-
+        
         /**
          * Queries if the player has a sword technique.
          *
@@ -209,16 +212,16 @@ namespace emuWorks {
          * @return true if they have the technique; false otherwise.
          */
         bool hasTechnique(int technique) const;
-
+        
         /**
          * Sets if the player has a sword technique or not.
-         *
+         * 
          * @param technique Which technique to set. Valid values are in
          *                  the Techniques enumeration.
          * @param value true to have the technique; false otherwise.
          */
         void setTechnique(int technique, bool value);
-
+        
         /**
          * Queries if the player has a certain spell.
          *
@@ -227,7 +230,7 @@ namespace emuWorks {
          * @return true if they have it; false otherwise.
          */
         bool hasSpell(int spell) const;
-
+        
         /**
          * Sets if the player has a certain spell.
          *
@@ -235,7 +238,7 @@ namespace emuWorks {
          * @param value true to have the spell; false otherwise.
          */
         void setSpell(int spell, bool value);
-
+        
         /**
          * Queries if the player has a certain item.
          *
@@ -244,7 +247,7 @@ namespace emuWorks {
          * @return true if they have it; false otherwise.
          */
         bool hasItem(int item) const;
-
+        
         /**
          * Sets if the player has a certain item.
          *
@@ -252,7 +255,7 @@ namespace emuWorks {
          * @param value true to have the item; false otherwise.
          */
         void setItem(int item, bool value);
-
+        
         /**
          * Queries if the player has sealed a certain palace.
          *
@@ -261,7 +264,7 @@ namespace emuWorks {
          * @return true if they have sealed it; false otherwise.
          */
         bool hasSeal(int palace) const;
-
+        
         /**
          * Sets if the player has sealed a certain palace.
          *
@@ -269,29 +272,29 @@ namespace emuWorks {
          * @param value true to seal; false otherwise.
          */
         void setSeal(int palace, bool value);
-
+        
         /**
          * Gets the number of keys the player has.
          *
          * @return The number of keys.
          */
         int getKeys() const;
-
+        
         /**
          * Sets the number of keys the player has.
          *
          * @param value The new number of keys.
          */
         void setKeys(unsigned char value);
-
+        
         friend class SRAMFile;
-
+        
     private:
         /**
          * Sets if this game has been modified or not.
          */
         void setModified(bool modified = true) { this->modified = modified; }
-
+        
         /**
          * Translates a character from the Zelda II alphabet to ASCII.
          *
@@ -300,7 +303,7 @@ namespace emuWorks {
          * @return The translated letter.
          */
         static char fromNES(unsigned char letter);
-
+        
         /**
          * Translates a character from ASCII to the Zelda II alphabet.
          *
@@ -309,7 +312,7 @@ namespace emuWorks {
          * @return The translated letter.
          */
         static unsigned char toNES(char letter);
-
+        
         unsigned char *nvram;
         bool modified, valid;
     };
