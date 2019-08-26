@@ -1,0 +1,9 @@
+z2se todo list
+
+- need documentation readme
+- SRAM document
+- places you find items (magic containers, life containers)
+  those offsets should be fixed, or a crash could occur.
+- could use a file size check since there is no checksum
+  or some better way to validate the file as an SRAM file
+

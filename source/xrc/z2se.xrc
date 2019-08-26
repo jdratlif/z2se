@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<resource version="2.3.0.1" xmlns="http://www.wxwidgets.org/wxxrc">
+    <object class="wxFrame" name="ID_FRAME" subclass="MainFrame">
+        <style>wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxMINIMIZE_BOX|wxMAXIMIZE_BOX|wxCLOSE_BOX</style>
+        <size>800,600</size>
+        <object class="wxMenuBar" name="ID_MENUBAR">
+            <object class="wxMenu">
+                <label>_File</label>
+                <object class="wxMenuItem" name="IDM_FILE_OPEN">
+                    <label>_Open\tCtrl-O</label>
+                    <help>Open an SRAM file</help>
+                </object>
+                <object class="wxMenuItem" name="IDM_FILE_CLOSE">
+                    <label>_Close\tCtrl-W</label>
+                    <help>Close current SRAM file</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="IDM_FILE_SAVE">
+                    <label>_Save\tCtrl-S</label>
+                    <help>Save current SRAM file</help>
+                </object>
+                <object class="wxMenuItem" name="IDM_FILE_SAVE_AS">
+                    <label>Save _As</label>
+                    <help>Save current SRAM file as...</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="IDM_FILE_EXIT">
+                    <label>E_xit</label>
+                    <help>Exit the application</help>
+                </object>
+            </object>
+            <object class="wxMenu">
+                <label>_Game</label>
+                <object class="wxMenuItem" name="IDM_GAME_ONE">
+                    <label>_One\tF1</label>
+                    <radio>1</radio>
+                    <help>Edit first save game</help>
+                </object>
+                <object class="wxMenuItem" name="IDM_GAME_TWO">
+                    <label>_Two\tF2</label>
+                    <radio>1</radio>
+                    <help>Edit second save game</help>
+                </object>
+                <object class="wxMenuItem" name="IDM_GAME_THREE">
+                    <label>_Three\tF3</label>
+                    <radio>1</radio>
+                    <help>Edit third save game</help>
+                </object>
+            </object>
+            <object class="wxMenu">
+                <label>H_ave</label>
+                <object class="wxMenu" name="IDM_HAVE_ALL">
+                    <label>_All</label>
+                    <object class="wxMenuItem" name="IDM_HAVE_ALL_LEVELS">
+                        <label>_Levels\tCtrl-Shift-L</label>
+                        <help>Give max levels</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_ALL_CONTAINERS">
+                        <label>_Containers\tCtrl-Shift-C</label>
+                        <help>Give all containers</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_ALL_TECHNIQUES">
+                        <label>_Techniques\tCtrl-Shift-T</label>
+                        <help>Give all techniques</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_ALL_SPELLS">
+                        <label>_Spells\tCtrl-Shift-S</label>
+                        <help>Give all spells</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_ALL_ITEMS">
+                        <label>_Items\tCtrl-Shift-I</label>
+                        <help>Give all items</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_ALL_SEALS">
+                        <label>S_eals\tCtrl-Shift-E</label>
+                        <help>Give all palace seals</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_ALL_KEYS">
+                        <label>_Keys\tCtrl-Shift-K</label>
+                        <help>Give max keys</help>
+                    </object>
+                </object>
+                <object class="wxMenu" name="IDM_HAVE_NONE">
+                    <label>_None</label>
+                    <object class="wxMenuItem" name="IDM_HAVE_NONE_LEVELS">
+                        <label>_Levels\tCtrl-Alt-L</label>
+                        <help>Remove all levels</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_NONE_CONTAINERS">
+                        <label>_Containers\tCtrl-Alt-C</label>
+                        <help>Remove all containers</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_NONE_TECHNIQUES">
+                        <label>_Techniques\tCtrl-Alt-T</label>
+                        <help>Remove all techniques</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_NONE_SPELLS">
+                        <label>_Spells\tCtrl-Alt-S</label>
+                        <help>Remove all spells</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_NONE_ITEMS">
+                        <label>_Items\tCtrl-Alt-I</label>
+                        <help>Remove all items</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_NONE_SEALS">
+                        <label>S_eals\tCtrl-Alt-E</label>
+                        <help>Remove all palace seals</help>
+                    </object>
+                    <object class="wxMenuItem" name="IDM_HAVE_NONE_KEYS">
+                        <label>_Keys\tCtrl-Alt-K</label>
+                        <help>Remove all keys</help>
+                    </object>
+                </object>
+            </object>
+            <object class="wxMenu">
+                <label>_Help</label>
+                <object class="wxMenuItem" name="IDM_HELP_ABOUT">
+                    <label>_About</label>
+                    <help>About Zelda II SRAM Editor</help>
+                </object>
+            </object>
+        </object>
+        <object class="wxPanel" name="ID_PANEL">
+            <style>wxSUNKEN_BORDER|wxTAB_TRAVERSAL</style>
+            <bg>#FFFFFF</bg>
+            <object class="wxBoxSizer">
+                <orient>wxVERTICAL</orient>
+                <object class="sizeritem">
+                    <flag>wxGROW|wxALL</flag>
+                    <border>5</border>
+                    <option>1</option>
+                    <object class="wxBoxSizer">
+                        <orient>wxVERTICAL</orient>
+                        <object class="sizeritem">
+                            <flag>wxALIGN_LEFT|wxALL</flag>
+                            <border>0</border>
+                            <object class="wxBoxSizer">
+                                <orient>wxHORIZONTAL</orient>
+                                <object class="sizeritem">
+                                    <flag>wxGROW|wxALL</flag>
+                                    <border>5</border>
+                                    <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                        <orient>wxVERTICAL</orient>
+                                        <label>Name</label>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxTextCtrl" name="ID_NAME">
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                                <object class="sizeritem">
+                                    <flag>wxGROW|wxALL</flag>
+                                    <border>5</border>
+                                    <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                        <orient>wxVERTICAL</orient>
+                                        <label>Play Count</label>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxSlider" name="ID_PLAY_COUNT">
+                                                <size>175,-1</size>
+                                                <style>wxSL_HORIZONTAL|wxSL_LABELS</style>
+                                                <value>0</value>
+                                                <min>0</min>
+                                                <max>255</max>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                                <object class="sizeritem">
+                                    <flag>wxGROW|wxALL</flag>
+                                    <border>5</border>
+                                    <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                        <orient>wxVERTICAL</orient>
+                                        <label>Triforce</label>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxALL</flag>
+                                            <border>5</border>
+                                            <option>1</option>
+                                            <object class="wxCheckBox" name="ID_TRIFORCE">
+                                                <label>Have</label>
+                                                <checked>0</checked>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                            </object>
+                        </object>
+                        <object class="sizeritem">
+                            <flag>wxALIGN_LEFT|wxALL</flag>
+                            <border>0</border>
+                            <object class="wxBoxSizer">
+                                <orient>wxHORIZONTAL</orient>
+                                <object class="sizeritem">
+                                    <flag>wxGROW|wxALL</flag>
+                                    <border>5</border>
+                                    <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                        <orient>wxVERTICAL</orient>
+                                        <label>Levels</label>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                            <border>0</border>
+                                            <object class="wxFlexGridSizer">
+                                                <cols>2</cols>
+                                                <rows>3</rows>
+                                                <vgap>0</vgap>
+                                                <hgap>0</hgap>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                                                    <border>5</border>
+                                                    <object class="wxStaticText" name="wxID_STATIC">
+                                                        <label>Sword</label>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxSlider" name="ID_SWORD_LEVEL">
+                                                        <size>150,-1</size>
+                                                        <style>wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS</style>
+                                                        <value>1</value>
+                                                        <min>1</min>
+                                                        <max>8</max>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                                                    <border>5</border>
+                                                    <object class="wxStaticText" name="wxID_STATIC">
+                                                        <label>Magic</label>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxSlider" name="ID_MAGIC_LEVEL">
+                                                        <size>150,-1</size>
+                                                        <style>wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS</style>
+                                                        <value>1</value>
+                                                        <min>1</min>
+                                                        <max>8</max>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                                                    <border>5</border>
+                                                    <object class="wxStaticText" name="wxID_STATIC">
+                                                        <label>Life</label>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxSlider" name="ID_LIFE_LEVEL">
+                                                        <size>150,-1</size>
+                                                        <style>wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS</style>
+                                                        <value>1</value>
+                                                        <min>1</min>
+                                                        <max>8</max>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                                <object class="sizeritem">
+                                    <flag>wxGROW|wxALL</flag>
+                                    <border>5</border>
+                                    <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                        <orient>wxVERTICAL</orient>
+                                        <label>Containers</label>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                            <border>0</border>
+                                            <object class="wxFlexGridSizer">
+                                                <cols>2</cols>
+                                                <rows>2</rows>
+                                                <vgap>0</vgap>
+                                                <hgap>0</hgap>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                                                    <border>5</border>
+                                                    <object class="wxStaticText" name="wxID_STATIC">
+                                                        <label>Magic</label>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxSlider" name="ID_MAGIC_CONTAINER">
+                                                        <size>150,-1</size>
+                                                        <style>wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS</style>
+                                                        <value>1</value>
+                                                        <min>1</min>
+                                                        <max>8</max>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                                                    <border>5</border>
+                                                    <object class="wxStaticText" name="wxID_STATIC">
+                                                        <label>Life</label>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxSlider" name="ID_LIFE_CONTAINER">
+                                                        <size>150,-1</size>
+                                                        <style>wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS</style>
+                                                        <value>1</value>
+                                                        <min>1</min>
+                                                        <max>8</max>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                                <object class="sizeritem">
+                                    <flag>wxGROW|wxALL</flag>
+                                    <border>5</border>
+                                    <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                        <orient>wxVERTICAL</orient>
+                                        <label>Techniques</label>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxCheckBox" name="ID_DOWNWARD_THRUST">
+                                                <label>Downward Thrust</label>
+                                                <checked>0</checked>
+                                            </object>
+                                        </object>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_LEFT|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxCheckBox" name="ID_UPWARD_THRUST">
+                                                <label>Upward Thrust</label>
+                                                <checked>0</checked>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                            </object>
+                        </object>
+                        <object class="sizeritem">
+                            <flag>wxALIGN_LEFT|wxALL</flag>
+                            <border>0</border>
+                            <object class="wxBoxSizer">
+                                <orient>wxHORIZONTAL</orient>
+                                <object class="sizeritem">
+                                    <flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                    <border>5</border>
+                                    <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                        <orient>wxVERTICAL</orient>
+                                        <label>Spells</label>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                            <border>0</border>
+                                            <object class="wxFlexGridSizer">
+                                                <cols>4</cols>
+                                                <rows>2</rows>
+                                                <vgap>0</vgap>
+                                                <hgap>0</hgap>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_SHIELD">
+                                                        <label>Shield</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_JUMP">
+                                                        <label>Jump</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_LIFE">
+                                                        <label>Life</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_FAIRY">
+                                                        <label>Fairy</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_FIRE">
+                                                        <label>Fire</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_REFLECT">
+                                                        <label>Reflect</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_SPELL">
+                                                        <label>Spell</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_THUNDER">
+                                                        <label>Thunder</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                                <object class="sizeritem">
+                                    <flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                    <border>5</border>
+                                    <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                        <orient>wxVERTICAL</orient>
+                                        <label>Items</label>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                            <border>0</border>
+                                            <object class="wxFlexGridSizer">
+                                                <cols>4</cols>
+                                                <rows>2</rows>
+                                                <vgap>0</vgap>
+                                                <hgap>0</hgap>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_CANDLE">
+                                                        <label>Candle</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_GLOVE">
+                                                        <label>Glove</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_RAFT">
+                                                        <label>Raft</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_BOOTS">
+                                                        <label>Boots</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_CROSS">
+                                                        <label>Cross</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_FLUTE">
+                                                        <label>Flute</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_MAGIC_KEY">
+                                                        <label>Magic Key</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_HAMMER">
+                                                        <label>Hammer</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                            </object>
+                        </object>
+                        <object class="sizeritem">
+                            <flag>wxALIGN_LEFT|wxALL</flag>
+                            <border>0</border>
+                            <object class="wxBoxSizer">
+                                <orient>wxHORIZONTAL</orient>
+                                <object class="sizeritem">
+                                    <flag>wxGROW|wxALL</flag>
+                                    <border>5</border>
+                                    <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                        <orient>wxVERTICAL</orient>
+                                        <label>Palace Seals</label>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                            <border>0</border>
+                                            <object class="wxFlexGridSizer">
+                                                <cols>3</cols>
+                                                <rows>2</rows>
+                                                <vgap>0</vgap>
+                                                <hgap>0</hgap>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_PARAPA">
+                                                        <label>Parapa Desert</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_MIDORO">
+                                                        <label>Midoro Swamp</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_ISLAND">
+                                                        <label>Island Palace</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_MAZE">
+                                                        <label>Maze Palace</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_SEA">
+                                                        <label>Sea Palace</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                                <object class="sizeritem">
+                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
+                                                    <border>5</border>
+                                                    <object class="wxCheckBox" name="ID_THREE_EYE_ROCK">
+                                                        <label>Three Eye Rock</label>
+                                                        <checked>0</checked>
+                                                    </object>
+                                                </object>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                                <object class="sizeritem">
+                                    <flag>wxGROW|wxALL</flag>
+                                    <border>5</border>
+                                    <object class="wxStaticBoxSizer" name="wxID_ANY">
+                                        <orient>wxVERTICAL</orient>
+                                        <label>Keys</label>
+                                        <object class="sizeritem">
+                                            <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+                                            <border>5</border>
+                                            <object class="wxSlider" name="ID_KEY">
+                                                <size>150,-1</size>
+                                                <style>wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS</style>
+                                                <value>0</value>
+                                                <min>0</min>
+                                                <max>9</max>
+                                            </object>
+                                        </object>
+                                    </object>
+                                </object>
+                            </object>
+                        </object>
+                    </object>
+                </object>
+            </object>
+        </object>
+        <object class="wxStatusBar" name="ID_STATUSBAR">
+            <style>wxST_SIZEGRIP|wxNO_BORDER</style>
+            <fields>1</fields>
+            <widths></widths>
+        </object>
+    </object>
+</resource>
