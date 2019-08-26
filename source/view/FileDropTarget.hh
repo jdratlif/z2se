@@ -1,6 +1,6 @@
 /*
  * Zelda II SRAM Editor
- * Copyright (C) 2004-2005,2007 emuWorks
+ * Copyright (C) 2004-2005,2007-2008 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,10 +20,10 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: FileDropTarget.hh,v 1.5 2007/02/25 08:32:40 technoplaza Exp $
+// $Id: FileDropTarget.hh,v 1.6 2008/12/17 06:24:27 jdratlif Exp $
 
-#ifndef _FILE_DROP_TARGET_HH
-#define _FILE_DROP_TARGET_HH
+#ifndef Z2SE_FILEDROPTARGET_HH_
+#define Z2SE_FILEDROPTARGET_HH_
 
 #include <wx/dnd.h>
 

@@ -1,6 +1,6 @@
 /*
  * Zelda II SRAM Editor
- * Copyright (C) 2004-2005,2007 emuWorks
+ * Copyright (C) 2004-2005,2007-2008 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,10 +20,10 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: MainFrame.hh,v 1.12 2007/02/25 08:32:40 technoplaza Exp $
+// $Id: MainFrame.hh,v 1.13 2008/12/17 06:24:27 jdratlif Exp $
 
-#ifndef _MAIN_FRAME_HH
-#define _MAIN_FRAME_HH
+#ifndef Z2SE_MAINFRAME_HH_
+#define Z2SE_MAINFRAME_HH_
 
 namespace emuWorks {
     class SRAMFile;

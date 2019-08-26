@@ -1,6 +1,6 @@
 /*
  * Zelda II SRAM Editor
- * Copyright (C) 2004-2005,2007 emuWorks
+ * Copyright (C) 2004-2005,2007-2008 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: GenApp.cc,v 1.5 2007/02/25 08:32:40 technoplaza Exp $
+// $Id: GenApp.cc,v 1.6 2008/12/17 06:24:27 jdratlif Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -46,10 +46,10 @@ const wxString *GenApp::APP_FULL_NAME =
     new wxString(wxT("Zelda II SRAM Editor"));
 
 const wxString *GenApp::APP_VERSION =
-    new wxString(wxT("1.1"));
+    new wxString(wxT("1.1a"));
 
 const wxString *GenApp::APP_COPYRIGHT =
-    new wxString(wxT("Copyright (C) 2004-2005,2007 emuWorks"));
+    new wxString(wxT("Copyright (C) 2004-2005,2007-2008 emuWorks"));
 
 const wxString *GenApp::APP_URL =
     new wxString(wxT("http://games.technoplaza.net/"));

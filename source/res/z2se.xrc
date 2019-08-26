@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resource version="2.3.0.1" xmlns="http://www.wxwidgets.org/wxxrc">
     <object class="wxFrame" name="IDF_FRAME" subclass="MainFrame">
         <style>wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxMINIMIZE_BOX|wxMAXIMIZE_BOX|wxCLOSE_BOX</style>
@@ -9,27 +9,22 @@
                 <label>&amp;File</label>
                 <object class="wxMenuItem" name="wxID_OPEN">
                     <label>&amp;Open\tCtrl-O</label>
-                    <help>Open SRAM File</help>
                 </object>
                 <object class="wxMenuItem" name="wxID_CLOSE">
                     <label>&amp;Close\tCtrl-W</label>
-                    <help>Close SRAM File</help>
                 </object>
                 <object class="separator">
                 </object>
                 <object class="wxMenuItem" name="wxID_SAVE">
                     <label>&amp;Save\tCtrl-S</label>
-                    <help>Save SRAM File</help>
                 </object>
                 <object class="wxMenuItem" name="wxID_SAVEAS">
                     <label>Save &amp;As</label>
-                    <help>Save SRAM File as...</help>
                 </object>
                 <object class="separator">
                 </object>
                 <object class="wxMenuItem" name="wxID_EXIT">
                     <label>E&amp;xit</label>
-                    <help>Exit the program</help>
                 </object>
             </object>
             <object class="wxMenu">
@@ -38,17 +33,14 @@
                     <label>&amp;One\tF1</label>
                     <radio>1</radio>
                     <checked>1</checked>
-                    <help>Edit Game 1</help>
                 </object>
                 <object class="wxMenuItem" name="IDM_GAME_TWO">
                     <label>&amp;Two\tF2</label>
                     <radio>1</radio>
-                    <help>Edit Game 2</help>
                 </object>
                 <object class="wxMenuItem" name="IDM_GAME_THREE">
                     <label>&amp;Three\tF3</label>
                     <radio>1</radio>
-                    <help>Edit Game 3</help>
                 </object>
             </object>
             <object class="wxMenu">
@@ -57,62 +49,48 @@
                     <label>&amp;All</label>
                     <object class="wxMenuItem" name="IDM_HAVE_ALL_LEVELS">
                         <label>&amp;Levels</label>
-                        <help>Have all power up levels</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_ALL_CONTAINERS">
                         <label>&amp;Containers</label>
-                        <help>Have all magic and heart containers</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_ALL_TECHNIQUES">
                         <label>&amp;Techniques</label>
-                        <help>Have all sword techniques</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_ALL_SPELLS">
                         <label>&amp;Spells</label>
-                        <help>Have all spells</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_ALL_ITEMS">
                         <label>&amp;Items</label>
-                        <help>Have all items</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_ALL_SEALS">
                         <label>S&amp;eals</label>
-                        <help>Have all palaces sealed</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_ALL_KEYS">
                         <label>&amp;Keys</label>
-                        <help>Have full set of keys</help>
                     </object>
                 </object>
                 <object class="wxMenu" name="IDM_HAVE_NONE">
                     <label>&amp;None</label>
                     <object class="wxMenuItem" name="IDM_HAVE_NONE_LEVELS">
                         <label>&amp;Levels</label>
-                        <help>Remove all power up levels</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_NONE_CONTAINERS">
                         <label>&amp;Containers</label>
-                        <help>Remove all magic and heart containers</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_NONE_TECHNIQUES">
                         <label>&amp;Techniques</label>
-                        <help>Remove all sword techniques</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_NONE_SPELLS">
                         <label>&amp;Spells</label>
-                        <help>Remove all spells</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_NONE_ITEMS">
                         <label>&amp;Items</label>
-                        <help>Remove all items</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_NONE_SEALS">
                         <label>S&amp;eals</label>
-                        <help>Remove all palace seals</help>
                     </object>
                     <object class="wxMenuItem" name="IDM_HAVE_NONE_KEYS">
                         <label>&amp;Keys</label>
-                        <help>Remove all keys</help>
                     </object>
                 </object>
             </object>
@@ -120,7 +98,6 @@
                 <label>&amp;Help</label>
                 <object class="wxMenuItem" name="wxID_ABOUT">
                     <label>_About</label>
-                    <help>Version and Copyright Information</help>
                 </object>
             </object>
         </object>
@@ -223,7 +200,7 @@
                                                                 <vgap>0</vgap>
                                                                 <hgap>0</hgap>
                                                                 <object class="sizeritem">
-                                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
                                                                     <border>5</border>
                                                                     <object class="wxStaticText" name="wxID_STATIC">
                                                                         <label>Sword</label>
@@ -241,7 +218,7 @@
                                                                     </object>
                                                                 </object>
                                                                 <object class="sizeritem">
-                                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
                                                                     <border>5</border>
                                                                     <object class="wxStaticText" name="wxID_STATIC">
                                                                         <label>Magic</label>
@@ -259,7 +236,7 @@
                                                                     </object>
                                                                 </object>
                                                                 <object class="sizeritem">
-                                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
                                                                     <border>5</border>
                                                                     <object class="wxStaticText" name="wxID_STATIC">
                                                                         <label>Life</label>
@@ -295,7 +272,7 @@
                                                                 <vgap>0</vgap>
                                                                 <hgap>0</hgap>
                                                                 <object class="sizeritem">
-                                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
                                                                     <border>5</border>
                                                                     <object class="wxStaticText" name="wxID_STATIC">
                                                                         <label>Magic</label>
@@ -313,7 +290,7 @@
                                                                     </object>
                                                                 </object>
                                                                 <object class="sizeritem">
-                                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                                                                    <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL</flag>
                                                                     <border>5</border>
                                                                     <object class="wxStaticText" name="wxID_STATIC">
                                                                         <label>Life</label>

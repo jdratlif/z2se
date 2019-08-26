@@ -1,6 +1,6 @@
 /*
  * Zelda II SRAM Editor
- * Copyright (C) 2004-2005,2007 emuWorks
+ * Copyright (C) 2004-2005,2007-2008 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: MainFrame.cc,v 1.13 2007/02/25 08:32:40 technoplaza Exp $
+// $Id: MainFrame.cc,v 1.16 2008/12/17 06:34:43 jdratlif Exp $
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
@@ -37,7 +37,7 @@
 #include "GenApp.hh"
 #include "model/SaveSlot.hh"
 #include "model/SRAMFile.hh"
-#include "res/palace.xpm"
+#include "res/icon32x32.xpm"
 #include "view/FileDropTarget.hh"
 #include "view/MainFrame.hh"
 
@@ -56,7 +56,7 @@ MainFrame::MainFrame() {
 
 void MainFrame::CreateControls() {
     wxXmlResource::Get()->LoadFrame(this, GetParent(), wxT("IDF_FRAME"));
-    SetIcon(palace_xpm);
+    SetIcon(icon32x32_xpm);
     
     wxMenuBar *menubar = GetMenuBar();
     
@@ -261,7 +261,7 @@ void MainFrame::load(wxString &filename) {
 void MainFrame::fileOpen(wxCommandEvent &) {
     static wxFileDialog *dlg = new wxFileDialog(this, 
         wxT("Choose a .SAV File"), wxT(""), wxT(""), 
-        wxT("NES SRAM File (*.sav)|*.sav"), (wxOPEN | wxCHANGE_DIR));
+        wxT("NES SRAM File (*.sav)|*.sav"), (wxFD_OPEN | wxFD_CHANGE_DIR));
         
     int value = dlg->ShowModal();
     
@@ -282,7 +282,7 @@ void MainFrame::fileSave(wxCommandEvent &) {
 void MainFrame::fileSaveAs(wxCommandEvent &) {
     static wxFileDialog *dlg = new wxFileDialog(this,
         wxT("Choose a .SAV File"), wxT(""), wxT(""),
-        wxT("NES SRAM File (*.sav)|*.sav"), (wxSAVE | wxCHANGE_DIR));
+        wxT("NES SRAM File (*.sav)|*.sav"), (wxFD_SAVE | wxFD_CHANGE_DIR));
 
     int value = dlg->ShowModal();
 

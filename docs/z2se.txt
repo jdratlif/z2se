@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
-| Zelda II SRAM Editor 1.1
-| Copyright (C) 2004-2005,2007 emuWorks
+| Zelda II SRAM Editor 1.1a
+| Copyright (C) 2004-2005,2007-2008 emuWorks
 | Written by John Ratliff
 | http://games.technoplaza.net/
 --------------------------------------------------------------------------------
@@ -24,23 +24,19 @@
 - Installation -
 ----------------
 
-  For Windows, Linux, and Mac OS X, I have provided a binary version. You should
-  be able to download the binary and run the program by double-clicking the
-  executable.
+  Binaries are available for Windows (2000 and later), Linux (requires GTK+ >=
+  2.0), and Mac OS X (Tiger or later). The source is also available if you want
+  to compile it yourself.
   
-  For Windows, all the necessary files are included in the binary archive. For
-  the Linux binary, you will need GTK+ 2.0.
+  To compile, you will need a modern C++ compiler and wxWidgets 2.8 or later.
   
-  To compile the source, you will require an ISO standard C++ compiler. I
-  recommend g++ 3.3 or later. I used mingw-g++ 3.4.2 for Windows. You will
-  also need wxWidgets 2.6 to compile from source.
+  On most platforms, compiling is as easy as opening a terminal and running
+  ./configure && make. That should work on Linux, Mac OS X, and Windows with
+  mingw/msys. There are also Visual Studio project files in the vstudio
+  directory.
   
-  Once you have wxWidgets installed, you should be able to do something like:
-  
-  ./configure && make
-  
-  This should produce an executable z2se (z2se.exe on Windows). Contact me if
-  you have problems building the source.
+  For more complete compilation instructions, consult our compiling HOWTO at
+  http://games.technoplaza.net/compile.php.
   
 ---------
 - Usage -
@@ -92,16 +88,23 @@
 - Revision History -
 --------------------
 
-  Version 1.1 - February 24, 2007
+  Version 1.1a - Wednesday, December 17, 2008
+    - Updated code to compile under wxWidgets 2.8.
+    - Updated Visual Studio project files for Visual Studio 2008.
+    - Added upx compression to mac version.
+    - Added icons for the mac version.
+    - Updated compilation instructions.
+    
+  Version 1.1 - Saturday, February 24, 2007
     - Major code cleanup.
     - Added Visual C++ 2005 project files.
     - Adjusted Frame Sizing.
 
-  Version 1.0 - August 4, 2005
+  Version 1.0 - Thursday, August 4, 2005
     - Minor source improvements.
     - Added Linux GTK+ 1.2 and Mac OS X binaries.
     
-  Version 0.90 - December 10, 2004
+  Version 0.90 - Friday, December 10, 2004
     - Initial Public Release
     
 -----------

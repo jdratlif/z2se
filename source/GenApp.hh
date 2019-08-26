@@ -1,6 +1,6 @@
 /*
  * Zelda II SRAM Editor
- * Copyright (C) 2004-2005,2007 emuWorks
+ * Copyright (C) 2004-2005,2007-2008 emuWorks
  * http://games.technoplaza.net/
  *
  * This file is part of z2se.
@@ -20,10 +20,10 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: GenApp.hh,v 1.4 2007/02/24 20:10:00 technoplaza Exp $
+// $Id: GenApp.hh,v 1.5 2008/12/17 06:24:27 jdratlif Exp $
 
-#ifndef _GEN_APP_HH
-#define _GEN_APP_HH
+#ifndef Z2SE_GENAPP_HH_
+#define Z2SE_GENAPP_HH_
 
 /**
  * Private namespace used by all emuWorks programs.

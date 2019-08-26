@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "z2se", "z2se.vcproj", "{8097C83B-62EC-40A5-81CC-8B2A099594A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		DLL Unicode Debug|Win32 = DLL Unicode Debug|Win32
+		DLL Unicode Release|Win32 = DLL Unicode Release|Win32
+		Unicode Debug|Win32 = Unicode Debug|Win32
+		Unicode Release|Win32 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8097C83B-62EC-40A5-81CC-8B2A099594A1}.DLL Unicode Debug|Win32.ActiveCfg = DLL Unicode Debug|Win32
+		{8097C83B-62EC-40A5-81CC-8B2A099594A1}.DLL Unicode Debug|Win32.Build.0 = DLL Unicode Debug|Win32
+		{8097C83B-62EC-40A5-81CC-8B2A099594A1}.DLL Unicode Release|Win32.ActiveCfg = DLL Unicode Release|Win32
+		{8097C83B-62EC-40A5-81CC-8B2A099594A1}.DLL Unicode Release|Win32.Build.0 = DLL Unicode Release|Win32
+		{8097C83B-62EC-40A5-81CC-8B2A099594A1}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
+		{8097C83B-62EC-40A5-81CC-8B2A099594A1}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
+		{8097C83B-62EC-40A5-81CC-8B2A099594A1}.Unicode Release|Win32.ActiveCfg = Unicode Release|Win32
+		{8097C83B-62EC-40A5-81CC-8B2A099594A1}.Unicode Release|Win32.Build.0 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
