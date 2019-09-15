@@ -1,5 +1,3 @@
-# $Id: Makefile.am,v 1.10 2008/12/17 06:20:46 jdratlif Exp $
-
 AUTOMAKE_OPTIONS = subdir-objects
 CLEANFILES = res/z2se.cc
 EXTRA_DIST = res/icon32x32.ico res/icon32x32.xpm res/Info.plist res/windows.rc \
@@ -9,7 +7,7 @@ bin_PROGRAMS = z2se
 z2se_SOURCES = GenApp.cc GenApp.hh \
 	model/SaveSlot.cc model/SaveSlot.hh \
 	model/SRAMFile.cc model/SRAMFile.hh \
-	res/z2se.cc \
+	res/resource.cpp \
 	view/FileDropTarget.cc view/FileDropTarget.hh \
 	view/MainFrame.cc view/MainFrame.hh
 
@@ -32,4 +30,3 @@ z2se.app: z2se res/z2se.icns res/Info.plist
 	cp res/Info.plist z2se.app/Contents
 	cp res/z2se.icns z2se.app/Contents/Resources
 	echo -n 'APPL????' > z2se.app/Contents/PkgInfo
-

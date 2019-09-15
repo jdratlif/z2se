@@ -7,11 +7,10 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>
-	<string>z2se 1.1a</string>
+	<string>z2se 1.1b</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleExecutable</key>
 	<string>z2se</string>
 </dict>
 </plist>
-

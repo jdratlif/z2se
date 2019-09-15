@@ -1,16 +1,14 @@
-dnl $Id: configure.ac,v 1.5 2008/12/17 06:20:46 jdratlif Exp $
-
 dnl Initialize autoconf
-AC_INIT([z2se], [1.1a], [webmaster@technoplaza.net])
+AC_INIT([z2se], [1.1b], [webmaster@technoplaza.net])
 
-dnl require autoconf >= 2.59
-AC_PREREQ([2.59])
+dnl require autoconf >= 2.69
+AC_PREREQ([2.69])
 
 dnl use the config.h header
 AC_CONFIG_HEADERS([config.h])
 
 dnl initialize automake and allow bzipped distributions
-AM_INIT_AUTOMAKE([1.9.6 dist-bzip2])
+AM_INIT_AUTOMAKE([1.16.1 dist-bzip2])
 
 dnl host system check
 AC_CANONICAL_HOST
@@ -30,6 +28,19 @@ dnl tests for wxWidgets
 AM_OPTIONS_WXCONFIG
 AM_PATH_WXCONFIG([2.8.0], HAVE_WXWIDGETS=1, HAVE_WXWIDGETS=0)
 
+AC_ARG_WITH([macosx-version-min],
+    AS_HELP_STRING(
+        [--with-macosx-version-min=VERSION],
+        [compile for this version of Mac OS X and later]))
+
+if test "x$with_macosx_version_min" != "x"; then
+    MACOSX_VERSION_MIN_OPTS="-mmacosx-version-min=$with_macosx_version_min"
+    CPPFLAGS="$CPPFLAGS $MACOSX_VERSION_MIN_OPTS"
+    CFLAGS="$CFLAGS $MACOSX_VERSION_MIN_OPTS"
+    CXXFLAGS="$CXXFLAGS $MACOSX_VERSION_MIN_OPTS"
+    LDFLAGS="$LDFLAGS $MACOSX_VERSION_MIN_OPTS"
+fi
+
 if test $HAVE_WXWIDGETS -eq 1; then
     CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
     CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
@@ -42,18 +53,6 @@ else
                   path or a missing wx-config program.])
 fi
 
-WX_INCLUDES=""
-for opt in $WX_CPPFLAGS
-do
-    case "$opt" in
-        -I*)
-            WX_INCLUDES="$WX_INCLUDES $opt"
-            ;;
-    esac
-done
-AC_SUBST(WX_INCLUDES)
-
 dnl configure files to produce
 AC_CONFIG_FILES([Makefile source/Makefile])
 AC_OUTPUT
-
