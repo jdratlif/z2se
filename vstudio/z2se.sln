@@ -7,18 +7,30 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "z2se", "z2se.vcxproj", "{E6
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug DLL|x64 = Debug DLL|x64
 		Debug DLL|x86 = Debug DLL|x86
+		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release DLL|x64 = Release DLL|x64
 		Release DLL|x86 = Release DLL|x86
+		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Debug DLL|x64.ActiveCfg = Debug DLL|x64
+		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Debug DLL|x64.Build.0 = Debug DLL|x64
 		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Debug DLL|x86.ActiveCfg = Debug DLL|Win32
 		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Debug DLL|x86.Build.0 = Debug DLL|Win32
+		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Debug|x64.ActiveCfg = Debug|x64
+		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Debug|x64.Build.0 = Debug|x64
 		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Debug|x86.ActiveCfg = Debug|Win32
 		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Debug|x86.Build.0 = Debug|Win32
+		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Release DLL|x64.ActiveCfg = Release DLL|x64
+		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Release DLL|x64.Build.0 = Release DLL|x64
 		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Release DLL|x86.ActiveCfg = Release DLL|Win32
 		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Release DLL|x86.Build.0 = Release DLL|Win32
+		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Release|x64.ActiveCfg = Release|x64
+		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Release|x64.Build.0 = Release|x64
 		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Release|x86.ActiveCfg = Release|Win32
 		{E61A1594-D6ED-4C97-811E-412C00C26FEB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
