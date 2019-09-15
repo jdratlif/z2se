@@ -312,7 +312,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = source
 EXTRA_DIST = apidocs docs/*.txt Doxyfile sav \
-	vstudio/z2se/z2se.sln vstudio/z2se/z2se.vcproj
+	vstudio/z2se.sln vstudio/z2se.vcxproj \
+	vstudio/z2se.vcxproj.filters vstudio/z2se.vcxproj.user
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive

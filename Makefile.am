@@ -1,6 +1,7 @@
 SUBDIRS = source
 EXTRA_DIST = apidocs docs/*.txt Doxyfile sav \
-	vstudio/z2se/z2se.sln vstudio/z2se/z2se.vcproj
+	vstudio/z2se.sln vstudio/z2se.vcxproj \
+	vstudio/z2se.vcxproj.filters vstudio/z2se.vcxproj.user
 
 .PHONY: allclean apidocs bundle touch
 
