@@ -23,6 +23,8 @@
 #ifndef Z2SE_MAINFRAME_HH_
 #define Z2SE_MAINFRAME_HH_
 
+#include <array>
+
 #include <wx/checkbox.h>
 #include <wx/frame.h>
 #include <wx/panel.h>

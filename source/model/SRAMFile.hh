@@ -23,6 +23,8 @@
 #ifndef Z2SE_SRAMFILE_HH_
 #define Z2SE_SRAMFILE_HH_
 
+#include <array>
+
 #include <wx/string.h>
 
 /// The size of the SRAM file
