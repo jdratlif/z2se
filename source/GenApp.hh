@@ -23,6 +23,8 @@
 #ifndef Z2SE_GENAPP_HH_
 #define Z2SE_GENAPP_HH_
 
+#include <wx/app.h>
+
 /**
  * Private namespace used by all emuWorks programs.
  */
@@ -33,7 +35,7 @@ namespace emuWorks {
     class GenApp : public wxApp {
         DECLARE_CLASS(GenApp)
 
-    public:
+      public:
         /// The short name of the application.
         static const wxString *APP_NAME;
 
@@ -54,10 +56,10 @@ namespace emuWorks {
          *
          * @return true if initialization should proceed; false otherwise.
          */
-        virtual bool OnInit();
+        auto OnInit() -> bool override;
     };
 
     DECLARE_APP(GenApp)
-}
+} // namespace emuWorks
 
 #endif

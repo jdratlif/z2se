@@ -23,6 +23,8 @@
 #ifndef Z2SE_SRAMFILE_HH_
 #define Z2SE_SRAMFILE_HH_
 
+#include <wx/string.h>
+
 /// The size of the SRAM file
 #define SRAM_SIZE 0x2000
 
@@ -36,9 +38,9 @@ namespace emuWorks {
      * Class to encapsulate an SRAM file.
      */
     class SRAMFile {
-    private:
+      private:
         wxString *file;
-        SaveSlot *games[3];
+        std::array<SaveSlot *, 3> games;
         int current;
         char *data;
 
@@ -49,7 +51,7 @@ namespace emuWorks {
          */
         void load(wxString &filename);
 
-    public:
+      public:
         /**
          * Constructor for an SRAMFile object.
          *
@@ -67,14 +69,14 @@ namespace emuWorks {
          *
          * @return true if modified; false otherwise.
          */
-        bool isModified();
+        auto isModified() -> bool;
 
         /**
          * Gets the current game.
          *
          * @return The current game data.
          */
-        SaveSlot *getCurrentGame();
+        auto getCurrentGame() -> SaveSlot *;
 
         /**
          * Sets the current game.
@@ -83,7 +85,7 @@ namespace emuWorks {
          *
          * @return true if the current game was changed; false otherwise.
          */
-        bool setCurrentGame(unsigned int current);
+        auto setCurrentGame(unsigned int current) -> bool;
 
         /**
          * Checks if a particular game is valid.
@@ -92,14 +94,14 @@ namespace emuWorks {
          *
          * @return true if the game is valid; false otherwise.
          */
-        bool isValidGame(int game);
+        auto isValidGame(int game) -> bool;
 
         /**
          * Saves the SRAM data to the file it was opened from.
          *
          * @return true if the data was saved; false otherwise.
          */
-        bool save();
+        auto save() -> bool;
 
         /**
          * Saves the SRAM data to a particular file.
@@ -108,8 +110,8 @@ namespace emuWorks {
          *
          * @return true if the data was saved; false otherwise.
          */
-        bool save(wxString &filename);
+        auto save(wxString &filename) -> bool;
     };
-}
+} // namespace emuWorks
 
 #endif

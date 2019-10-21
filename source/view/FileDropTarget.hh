@@ -32,10 +32,10 @@ namespace emuWorks {
      * Class implementing a wxFileDropTarget for the MainFrame class.
      */
     class FileDropTarget : public wxFileDropTarget {
-    private:
+      private:
         MainFrame *owner;
 
-    public:
+      public:
         /**
          * Constructor for the FileDropTarget.
          *
@@ -50,9 +50,9 @@ namespace emuWorks {
          * @param y The y-coordinate of the drop.
          * @param files The files dropped on this target.
          */
-        virtual bool OnDropFiles(wxCoord x, wxCoord y,
-                                 const wxArrayString &files);
+        auto OnDropFiles(wxCoord x, wxCoord y, const wxArrayString &files)
+            -> bool override;
     };
-}
+} // namespace emuWorks
 
 #endif

@@ -23,6 +23,12 @@
 #ifndef Z2SE_MAINFRAME_HH_
 #define Z2SE_MAINFRAME_HH_
 
+#include <wx/checkbox.h>
+#include <wx/frame.h>
+#include <wx/panel.h>
+#include <wx/slider.h>
+#include <wx/textctrl.h>
+
 namespace emuWorks {
     class SRAMFile;
 
@@ -32,7 +38,7 @@ namespace emuWorks {
 
         friend class FileDropTarget;
 
-    public:
+      public:
         /**
          * Constructs a new MainFrame.
          */
@@ -43,11 +49,11 @@ namespace emuWorks {
          */
         void CreateControls();
 
-    private:
+      private:
         /**
          * Checks if we have an opem SRAM file.
          */
-        bool isOpen() const { return open; }
+        auto isOpen() const -> bool { return open; }
 
         /**
          * Sets whether we have an open SRAM file or not.
@@ -61,7 +67,7 @@ namespace emuWorks {
          *
          * @return true if closed; false otherwise.
          */
-        bool close();
+        auto close() -> bool;
 
         /**
          * Loads game data into the controls.
@@ -217,7 +223,7 @@ namespace emuWorks {
         wxMenuItem *fileCloseItem;
         wxMenuItem *fileSaveItem;
         wxMenuItem *fileSaveAsItem;
-        wxMenuItem *gameItems[3];
+        std::array<wxMenuItem *, 3> gameItems;
 
         wxPanel *panel;
 
@@ -253,9 +259,9 @@ namespace emuWorks {
         wxCheckBox *magicKeyCheck;
         wxCheckBox *hammerCheck;
 
-        wxCheckBox *palaceCheck[6];
+        std::array<wxCheckBox *, 6> palaceCheck;
         wxSlider *keySlider;
     };
-}
+} // namespace emuWorks
 
 #endif

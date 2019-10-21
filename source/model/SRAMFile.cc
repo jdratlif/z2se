@@ -27,14 +27,14 @@
 #include <wx/wxprec.h>
 
 #ifndef WX_PRECOMP
-   #include <wx/wx.h>
+    #include <wx/wx.h>
 #endif
 
 #include <cstring>
 #include <fstream>
 
-#include "model/SaveSlot.hh"
 #include "model/SRAMFile.hh"
+#include "model/SaveSlot.hh"
 
 using namespace emuWorks;
 
@@ -51,13 +51,13 @@ SRAMFile::~SRAMFile() {
     delete games[2];
 }
 
-bool SRAMFile::isModified() {
+auto SRAMFile::isModified() -> bool {
     if (current == -1) {
         return false;
     }
 
-    for (int game = 0; game < 3; game++) {
-        if (games[game]->isModified()) {
+    for (auto &game : games) {
+        if (game->isModified()) {
             return true;
         }
     }
@@ -65,15 +65,15 @@ bool SRAMFile::isModified() {
     return false;
 }
 
-SaveSlot *SRAMFile::getCurrentGame() {
+auto SRAMFile::getCurrentGame() -> SaveSlot * {
     if (current == -1) {
-        return 0;
+        return nullptr;
     }
 
     return games[current];
 }
 
-bool SRAMFile::setCurrentGame(unsigned int current) {
+auto SRAMFile::setCurrentGame(unsigned int current) -> bool {
     if (current > 2) {
         return false;
     }
@@ -86,20 +86,15 @@ bool SRAMFile::setCurrentGame(unsigned int current) {
     return true;
 }
 
-bool SRAMFile::isValidGame(int game) {
-    return games[game]->isValid();
-}
+auto SRAMFile::isValidGame(int game) -> bool { return games[game]->isValid(); }
 
-bool SRAMFile::save() {
-    return save(*file);
-}
+auto SRAMFile::save() -> bool { return save(*file); }
 
-bool SRAMFile::save(wxString &filename) {
+auto SRAMFile::save(wxString &filename) -> bool {
     for (int game = 0; game < 3; game++) {
         if (isValidGame(game)) {
             memcpy((data + GAME_OFFSET + (game * GAME_SIZE)),
-                   games[game]->nvram,
-                   GAME_SIZE);
+                   games[game]->nvram, GAME_SIZE);
         }
     }
 

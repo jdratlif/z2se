@@ -23,6 +23,8 @@
 #ifndef Z2SE_SAVESLOT_HH_
 #define Z2SE_SAVESLOT_HH_
 
+#include <wx/string.h>
+
 /// Game Size
 #define GAME_SIZE 0x32
 
@@ -61,29 +63,19 @@
 
 namespace emuWorks {
     /// the levels of experience
-    enum Levels {
-        SWORDLEVEL, MAGICLEVEL, LIFELEVEL
-    };
+    enum Levels { SWORDLEVEL, MAGICLEVEL, LIFELEVEL };
 
     /// The spells that can be learned
-    enum Spells {
-        SHIELD, JUMP, LIFE, FAIRY, FIRE, REFLECT, SPELL, THUNDER
-    };
+    enum Spells { SHIELD, JUMP, LIFE, FAIRY, FIRE, REFLECT, SPELL, THUNDER };
 
     /// The containers
-    enum Containers {
-        MAGICCONTAINER, LIFECONTAINER
-    };
+    enum Containers { MAGICCONTAINER, LIFECONTAINER };
 
     /// The game items
-    enum Items {
-        CANDLE, GLOVE, RAFT, BOOTS, CROSS, FLUTE, MAGICKEY, HAMMER
-    };
+    enum Items { CANDLE, GLOVE, RAFT, BOOTS, CROSS, FLUTE, MAGICKEY, HAMMER };
 
     /// The sword techniques
-    enum Techniques {
-        DOWNWARDTHRUST = 0x10, UPWARDTHRUST = 0x04
-    };
+    enum Techniques { DOWNWARDTHRUST = 0x10, UPWARDTHRUST = 0x04 };
 
     /**
      * Class encapsulating a SaveSlot for a Zelda II game.
@@ -91,7 +83,7 @@ namespace emuWorks {
     class SaveSlot {
         friend class SRAMFile;
 
-    private:
+      private:
         unsigned char *nvram;
         bool modified, valid;
 
@@ -107,7 +99,7 @@ namespace emuWorks {
          *
          * @return The translated letter.
          */
-        static char fromNES(unsigned char letter);
+        static auto fromNES(unsigned char letter) -> char;
 
         /**
          * Translates a character from ASCII to the Zelda II alphabet.
@@ -116,9 +108,9 @@ namespace emuWorks {
          *
          * @return The translated letter.
          */
-        static unsigned char toNES(char letter);
+        static auto toNES(char letter) -> unsigned char;
 
-    public:
+      public:
         /**
          * Constructor for a SaveSlot.
          *
@@ -136,14 +128,14 @@ namespace emuWorks {
          *
          * @return true if modified; false otherwise.
          */
-        bool isModified() const { return modified; }
+        auto isModified() const -> bool { return modified; }
 
         /**
          * Queries if this SaveSlot is valid.
          *
          * @return true if valid; false otherwise.
          */
-        bool isValid() const { return valid; }
+        auto isValid() const -> bool { return valid; }
 
         /**
          * Fixes data for a new quest game.
@@ -155,7 +147,7 @@ namespace emuWorks {
          *
          * @return The name.
          */
-        wxString getName() const;
+        auto getName() const -> wxString;
 
         /**
          * Sets the name of the character.
@@ -169,7 +161,7 @@ namespace emuWorks {
          *
          * @return The play count.
          */
-        int getPlayCount() const;
+        auto getPlayCount() const -> int;
 
         /**
          * Sets the play count.
@@ -183,7 +175,7 @@ namespace emuWorks {
          *
          * @return true if they have; false otherwise.
          */
-        bool hasTriforce() const;
+        auto hasTriforce() const -> bool;
 
         /**
          * Sets whether this player has saved the Triforce before.
@@ -200,7 +192,7 @@ namespace emuWorks {
          *
          * @return The experience level.
          */
-        int getLevel(int which) const;
+        auto getLevel(int which) const -> int;
 
         /**
          * Sets one of the experience level elements.
@@ -219,7 +211,7 @@ namespace emuWorks {
          *
          * @return The number of containers.
          */
-        int getContainers(int which) const;
+        auto getContainers(int which) const -> int;
 
         /**
          * Sets one of the container values.
@@ -238,7 +230,7 @@ namespace emuWorks {
          *
          * @return true if they have the technique; false otherwise.
          */
-        bool hasTechnique(int technique) const;
+        auto hasTechnique(int technique) const -> bool;
 
         /**
          * Sets if the player has a sword technique or not.
@@ -256,7 +248,7 @@ namespace emuWorks {
          *
          * @return true if they have it; false otherwise.
          */
-        bool hasSpell(int spell) const;
+        auto hasSpell(int spell) const -> bool;
 
         /**
          * Sets if the player has a certain spell.
@@ -273,7 +265,7 @@ namespace emuWorks {
          *
          * @return true if they have it; false otherwise.
          */
-        bool hasItem(int item) const;
+        auto hasItem(int item) const -> bool;
 
         /**
          * Sets if the player has a certain item.
@@ -290,7 +282,7 @@ namespace emuWorks {
          *
          * @return true if they have sealed it; false otherwise.
          */
-        bool hasSeal(int palace) const;
+        auto hasSeal(int palace) const -> bool;
 
         /**
          * Sets if the player has sealed a certain palace.
@@ -305,7 +297,7 @@ namespace emuWorks {
          *
          * @return The number of keys.
          */
-        int getKeys() const;
+        auto getKeys() const -> int;
 
         /**
          * Sets the number of keys the player has.
@@ -314,6 +306,6 @@ namespace emuWorks {
          */
         void setKeys(unsigned char value);
     };
-}
+} // namespace emuWorks
 
 #endif

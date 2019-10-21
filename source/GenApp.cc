@@ -27,7 +27,7 @@
 #include <wx/wxprec.h>
 
 #ifndef WX_PRECOMP
-   #include <wx/wx.h>
+    #include <wx/wx.h>
 #endif
 
 #include <wx/xrc/xmlres.h>
@@ -37,14 +37,12 @@
 
 using namespace emuWorks;
 
-const wxString *GenApp::APP_NAME =
-    new wxString(wxT("z2se"));
+const wxString *GenApp::APP_NAME = new wxString(wxT("z2se"));
 
 const wxString *GenApp::APP_FULL_NAME =
     new wxString(wxT("Zelda II SRAM Editor"));
 
-const wxString *GenApp::APP_VERSION =
-    new wxString(wxT("1.1a"));
+const wxString *GenApp::APP_VERSION = new wxString(wxT("1.1a"));
 
 const wxString *GenApp::APP_COPYRIGHT =
     new wxString(wxT("Copyright (C) 2004-2005,2007-2008 emuWorks"));
@@ -55,12 +53,12 @@ const wxString *GenApp::APP_URL =
 // prototype for InitXmlResource function
 void InitXmlResource();
 
-bool GenApp::OnInit() {
+auto GenApp::OnInit() -> bool {
     // initialize the XRC resources
     wxXmlResource::Get()->InitAllHandlers();
     InitXmlResource();
 
-    MainFrame *frame = new MainFrame;
+    auto *frame = new MainFrame;
     frame->Show(true);
 
     return true;

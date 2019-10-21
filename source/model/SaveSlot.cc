@@ -27,7 +27,7 @@
 #include <wx/wxprec.h>
 
 #ifndef WX_PRECOMP
-   #include <wx/wx.h>
+    #include <wx/wx.h>
 #endif
 
 #include "model/SaveSlot.hh"
@@ -45,9 +45,7 @@ SaveSlot::SaveSlot(const char *nvram) {
     checkForNewGame();
 }
 
-SaveSlot::~SaveSlot() {
-    delete nvram;
-}
+SaveSlot::~SaveSlot() { delete nvram; }
 
 void SaveSlot::checkForNewGame() {
     if (nvram[TRIFORCE_OFFSET] == 1) {
@@ -75,7 +73,7 @@ void SaveSlot::checkForNewGame() {
     }
 }
 
-wxString SaveSlot::getName() const {
+auto SaveSlot::getName() const -> wxString {
     wxString name;
 
     for (int pos = 0; pos < 8; pos++) {
@@ -104,16 +102,14 @@ void SaveSlot::setName(wxString &name) {
     setModified();
 }
 
-int SaveSlot::getPlayCount() const {
-    return nvram[PLAY_COUNT_OFFSET];
-}
+auto SaveSlot::getPlayCount() const -> int { return nvram[PLAY_COUNT_OFFSET]; }
 
 void SaveSlot::setPlayCount(unsigned char value) {
     nvram[PLAY_COUNT_OFFSET] = value;
     setModified();
 }
 
-bool SaveSlot::hasTriforce() const {
+auto SaveSlot::hasTriforce() const -> bool {
     return (nvram[TRIFORCE_OFFSET] == 2);
 }
 
@@ -122,7 +118,7 @@ void SaveSlot::setTriforce(bool value) {
     setModified();
 }
 
-int SaveSlot::getLevel(int which) const {
+auto SaveSlot::getLevel(int which) const -> int {
     return nvram[LEVEL_OFFSET + which];
 }
 
@@ -131,7 +127,7 @@ void SaveSlot::setLevel(int which, unsigned char value) {
     setModified();
 }
 
-int SaveSlot::getContainers(int which) const {
+auto SaveSlot::getContainers(int which) const -> int {
     return nvram[CONTAINER_OFFSET + which];
 }
 
@@ -140,7 +136,7 @@ void SaveSlot::setContainers(int which, unsigned char value) {
     setModified();
 }
 
-bool SaveSlot::hasTechnique(int technique) const {
+auto SaveSlot::hasTechnique(int technique) const -> bool {
     return ((nvram[TECHNIQUE_OFFSET] & technique) > 0);
 }
 
@@ -154,7 +150,7 @@ void SaveSlot::setTechnique(int technique, bool value) {
     setModified();
 }
 
-bool SaveSlot::hasSpell(int spell) const {
+auto SaveSlot::hasSpell(int spell) const -> bool {
     return (nvram[SPELL_OFFSET + spell] == 1);
 }
 
@@ -163,7 +159,7 @@ void SaveSlot::setSpell(int spell, bool value) {
     setModified();
 }
 
-bool SaveSlot::hasItem(int item) const {
+auto SaveSlot::hasItem(int item) const -> bool {
     return (nvram[ITEM_OFFSET + item] == 1);
 }
 
@@ -172,7 +168,7 @@ void SaveSlot::setItem(int item, bool value) {
     setModified();
 }
 
-bool SaveSlot::hasSeal(int palace) const {
+auto SaveSlot::hasSeal(int palace) const -> bool {
     return (nvram[PALACE_OFFSET + palace] == (palace + 1));
 }
 
@@ -187,16 +183,14 @@ void SaveSlot::setSeal(int palace, bool value) {
     setModified();
 }
 
-int SaveSlot::getKeys() const {
-    return nvram[KEYS_OFFSET];
-}
+auto SaveSlot::getKeys() const -> int { return nvram[KEYS_OFFSET]; }
 
 void SaveSlot::setKeys(unsigned char value) {
     nvram[KEYS_OFFSET] = value;
     setModified();
 }
 
-char SaveSlot::fromNES(unsigned char letter) {
+auto SaveSlot::fromNES(unsigned char letter) -> char {
     if ((letter >= 0xD0) && (letter <= 0xD9)) {
         return static_cast<char>('0' + (letter - 0xD0));
     } else if ((letter >= 0xDA) && (letter <= 0xF3)) {
@@ -206,7 +200,7 @@ char SaveSlot::fromNES(unsigned char letter) {
     return static_cast<char>(' ');
 }
 
-unsigned char SaveSlot::toNES(char letter) {
+auto SaveSlot::toNES(char letter) -> unsigned char {
     if ((letter >= '0') && (letter <= '9')) {
         return static_cast<unsigned char>(0xD0 + (letter - '0'));
     } else if ((letter >= 'A') && (letter <= 'Z')) {

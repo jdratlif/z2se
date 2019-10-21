@@ -35,7 +35,8 @@
 
 using namespace emuWorks;
 
-bool FileDropTarget::OnDropFiles(wxCoord, wxCoord, const wxArrayString &files) {
+auto FileDropTarget::OnDropFiles(wxCoord, wxCoord, const wxArrayString &files)
+    -> bool {
     int size = files.GetCount();
 
     if (size > 0) {
@@ -45,8 +46,7 @@ bool FileDropTarget::OnDropFiles(wxCoord, wxCoord, const wxArrayString &files) {
 
         if (ext.CmpNoCase(wxT(".sav")) != 0) {
             wxMessageBox(wxT("Only NES SRAM (*.sav) files can be dropped."),
-                         wxT("Error: Invalid File Drop"),
-                         wxICON_ERROR | wxOK);
+                         wxT("Error: Invalid File Drop"), wxICON_ERROR | wxOK);
 
             return false;
         }
