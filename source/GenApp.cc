@@ -20,8 +20,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: GenApp.cc,v 1.6 2008/12/17 06:24:27 jdratlif Exp $
-
 #ifdef HAVE_CONFIG_H
     #include <config.h>
 #endif
@@ -41,7 +39,7 @@ using namespace emuWorks;
 
 const wxString *GenApp::APP_NAME =
     new wxString(wxT("z2se"));
-    
+
 const wxString *GenApp::APP_FULL_NAME =
     new wxString(wxT("Zelda II SRAM Editor"));
 
@@ -61,13 +59,12 @@ bool GenApp::OnInit() {
     // initialize the XRC resources
     wxXmlResource::Get()->InitAllHandlers();
     InitXmlResource();
-    
+
     MainFrame *frame = new MainFrame;
     frame->Show(true);
-    
+
     return true;
 }
 
 IMPLEMENT_CLASS(GenApp, wxApp)
 IMPLEMENT_APP(GenApp)
-

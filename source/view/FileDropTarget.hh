@@ -20,8 +20,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: FileDropTarget.hh,v 1.6 2008/12/17 06:24:27 jdratlif Exp $
-
 #ifndef Z2SE_FILEDROPTARGET_HH_
 #define Z2SE_FILEDROPTARGET_HH_
 
@@ -29,22 +27,22 @@
 
 namespace emuWorks {
     class MainFrame;
-    
+
     /**
      * Class implementing a wxFileDropTarget for the MainFrame class.
      */
     class FileDropTarget : public wxFileDropTarget {
     private:
         MainFrame *owner;
-        
+
     public:
         /**
          * Constructor for the FileDropTarget.
-         * 
+         *
          * @param owner The MainFrame associated with this FileDropTarget.
          */
         FileDropTarget(MainFrame *owner) : owner(owner) {}
-        
+
         /**
          * Virtual method called when files are dropped on this target.
          *
@@ -52,10 +50,9 @@ namespace emuWorks {
          * @param y The y-coordinate of the drop.
          * @param files The files dropped on this target.
          */
-        virtual bool OnDropFiles(wxCoord x, wxCoord y, 
+        virtual bool OnDropFiles(wxCoord x, wxCoord y,
                                  const wxArrayString &files);
     };
 }
 
 #endif
-

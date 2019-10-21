@@ -20,8 +20,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: SaveSlot.cc,v 1.8 2008/12/17 06:24:27 jdratlif Exp $
-
 #ifdef HAVE_CONFIG_H
     #include <config.h>
 #endif
@@ -39,11 +37,11 @@ using namespace emuWorks;
 SaveSlot::SaveSlot(const char *nvram) {
     this->nvram = new unsigned char[GAME_SIZE];
     memcpy(this->nvram, nvram, GAME_SIZE);
-    
+
     valid = (nvram[NAME_OFFSET] != '\xF4');
-    
+
     setModified(false);
-    
+
     checkForNewGame();
 }
 
@@ -54,10 +52,10 @@ SaveSlot::~SaveSlot() {
 void SaveSlot::checkForNewGame() {
     if (nvram[TRIFORCE_OFFSET] == 1) {
         setTriforce(true);
-        
+
         setContainers(MAGICCONTAINER, 4);
         setContainers(LIFECONTAINER, 4);
-        
+
         setItem(CANDLE, false);
         setItem(GLOVE, false);
         setItem(RAFT, false);
@@ -66,43 +64,43 @@ void SaveSlot::checkForNewGame() {
         setItem(FLUTE, false);
         setItem(MAGICKEY, false);
         setItem(HAMMER, false);
-        
+
         for (int palace = 0; palace < 6; palace++) {
             setSeal(palace, false);
         }
-        
+
         setKeys(0);
-        
+
         setModified(false);
     }
 }
 
 wxString SaveSlot::getName() const {
     wxString name;
-    
+
     for (int pos = 0; pos < 8; pos++) {
         char letter = fromNES(nvram[NAME_OFFSET + pos]);
         name.append(1, letter);
     }
-    
+
     return name.Trim();
 }
 
 void SaveSlot::setName(wxString &name) {
     int length = name.Length();
-    
+
     for (int pos = 0; pos < 8; pos++) {
         unsigned char letter;
-        
+
         if ((length - 1) < pos) {
             letter = static_cast<unsigned char>(0xF4);
         } else {
             letter = toNES(name.at(pos));
         }
-        
+
         nvram[NAME_OFFSET + pos] = letter;
     }
-    
+
     setModified();
 }
 
@@ -152,7 +150,7 @@ void SaveSlot::setTechnique(int technique, bool value) {
     } else {
         nvram[TECHNIQUE_OFFSET] &= (~technique);
     }
-    
+
     setModified();
 }
 
@@ -184,7 +182,7 @@ void SaveSlot::setSeal(int palace, bool value) {
     } else {
         nvram[SEAL_OFFSET]++;
     }
-    
+
     nvram[PALACE_OFFSET + palace] = (value ? (palace + 1) : 0);
     setModified();
 }
@@ -204,7 +202,7 @@ char SaveSlot::fromNES(unsigned char letter) {
     } else if ((letter >= 0xDA) && (letter <= 0xF3)) {
         return static_cast<char>('A' + (letter - 0xDA));
     }
-    
+
     return static_cast<char>(' ');
 }
 
@@ -214,7 +212,6 @@ unsigned char SaveSlot::toNES(char letter) {
     } else if ((letter >= 'A') && (letter <= 'Z')) {
         return static_cast<unsigned char>(0xDA + (letter - 'A'));
     }
-    
+
     return static_cast<unsigned char>(0xF4);
 }
-

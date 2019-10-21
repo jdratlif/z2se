@@ -20,8 +20,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: SRAMFile.hh,v 1.7 2008/12/17 06:24:27 jdratlif Exp $
-
 #ifndef Z2SE_SRAMFILE_HH_
 #define Z2SE_SRAMFILE_HH_
 
@@ -33,7 +31,7 @@
 
 namespace emuWorks {
     class SaveSlot;
-    
+
     /**
      * Class to encapsulate an SRAM file.
      */
@@ -43,14 +41,14 @@ namespace emuWorks {
         SaveSlot *games[3];
         int current;
         char *data;
-        
+
         /**
          * Loads the SRAM data from a file.
          *
          * @param filename The file to load SRAM data from.
          */
         void load(wxString &filename);
-        
+
     public:
         /**
          * Constructor for an SRAMFile object.
@@ -58,26 +56,26 @@ namespace emuWorks {
          * @param filename The SRAM file to use.
          */
         SRAMFile(wxString &filename);
-        
+
         /**
          * Destructor for an SRAMFile object.
          */
         ~SRAMFile();
-        
+
         /**
          * Checks if this SRAM file has been modified.
          *
          * @return true if modified; false otherwise.
          */
         bool isModified();
-        
+
         /**
          * Gets the current game.
          *
          * @return The current game data.
          */
         SaveSlot *getCurrentGame();
-        
+
         /**
          * Sets the current game.
          *
@@ -86,7 +84,7 @@ namespace emuWorks {
          * @return true if the current game was changed; false otherwise.
          */
         bool setCurrentGame(unsigned int current);
-        
+
         /**
          * Checks if a particular game is valid.
          *
@@ -95,14 +93,14 @@ namespace emuWorks {
          * @return true if the game is valid; false otherwise.
          */
         bool isValidGame(int game);
-        
+
         /**
          * Saves the SRAM data to the file it was opened from.
          *
          * @return true if the data was saved; false otherwise.
          */
         bool save();
-        
+
         /**
          * Saves the SRAM data to a particular file.
          *
@@ -115,4 +113,3 @@ namespace emuWorks {
 }
 
 #endif
-

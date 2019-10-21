@@ -20,8 +20,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: FileDropTarget.cc,v 1.7 2008/12/17 06:24:27 jdratlif Exp $
-
 #ifdef HAVE_CONFIG_H
     #include <config.h>
 #endif
@@ -42,20 +40,19 @@ bool FileDropTarget::OnDropFiles(wxCoord, wxCoord, const wxArrayString &files) {
 
     if (size > 0) {
         wxString filename = files[0];
-        
+
         wxString ext = filename.Mid(filename.Length() - 4);
-        
+
         if (ext.CmpNoCase(wxT(".sav")) != 0) {
             wxMessageBox(wxT("Only NES SRAM (*.sav) files can be dropped."),
                          wxT("Error: Invalid File Drop"),
                          wxICON_ERROR | wxOK);
-            
+
             return false;
         }
-        
+
         owner->load(filename);
     }
 
     return true;
 }
-

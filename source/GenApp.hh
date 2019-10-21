@@ -20,8 +20,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-// $Id: GenApp.hh,v 1.5 2008/12/17 06:24:27 jdratlif Exp $
-
 #ifndef Z2SE_GENAPP_HH_
 #define Z2SE_GENAPP_HH_
 
@@ -34,23 +32,23 @@ namespace emuWorks {
      */
     class GenApp : public wxApp {
         DECLARE_CLASS(GenApp)
-        
+
     public:
         /// The short name of the application.
         static const wxString *APP_NAME;
-        
+
         /// The full name of the application
         static const wxString *APP_FULL_NAME;
-        
+
         /// The version of the application.
         static const wxString *APP_VERSION;
-        
+
         /// The copyright notice for the application.
         static const wxString *APP_COPYRIGHT;
-        
+
         /// The website URL for this application.
         static const wxString *APP_URL;
-        
+
         /**
          * Called by wxWidgets to start initialization of the application.
          *
@@ -58,9 +56,8 @@ namespace emuWorks {
          */
         virtual bool OnInit();
     };
-    
+
     DECLARE_APP(GenApp)
 }
 
 #endif
-
