@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/jdratlif/git/z2se/build",
+  "command": "/usr/bin/c++   -DHAVE_CONFIG_H -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/z2se/build -I/home/jdratlif/git/z2se/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/z2se.dir/source/GenApp.cc.o -c /home/jdratlif/git/z2se/source/GenApp.cc",
+  "file": "/home/jdratlif/git/z2se/source/GenApp.cc"
+},
+{
+  "directory": "/home/jdratlif/git/z2se/build",
+  "command": "/usr/bin/c++   -DHAVE_CONFIG_H -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/z2se/build -I/home/jdratlif/git/z2se/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/z2se.dir/source/model/SaveSlot.cc.o -c /home/jdratlif/git/z2se/source/model/SaveSlot.cc",
+  "file": "/home/jdratlif/git/z2se/source/model/SaveSlot.cc"
+},
+{
+  "directory": "/home/jdratlif/git/z2se/build",
+  "command": "/usr/bin/c++   -DHAVE_CONFIG_H -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/z2se/build -I/home/jdratlif/git/z2se/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/z2se.dir/source/model/SRAMFile.cc.o -c /home/jdratlif/git/z2se/source/model/SRAMFile.cc",
+  "file": "/home/jdratlif/git/z2se/source/model/SRAMFile.cc"
+},
+{
+  "directory": "/home/jdratlif/git/z2se/build",
+  "command": "/usr/bin/c++   -DHAVE_CONFIG_H -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/z2se/build -I/home/jdratlif/git/z2se/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/z2se.dir/source/view/FileDropTarget.cc.o -c /home/jdratlif/git/z2se/source/view/FileDropTarget.cc",
+  "file": "/home/jdratlif/git/z2se/source/view/FileDropTarget.cc"
+},
+{
+  "directory": "/home/jdratlif/git/z2se/build",
+  "command": "/usr/bin/c++   -DHAVE_CONFIG_H -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/z2se/build -I/home/jdratlif/git/z2se/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/z2se.dir/source/view/MainFrame.cc.o -c /home/jdratlif/git/z2se/source/view/MainFrame.cc",
+  "file": "/home/jdratlif/git/z2se/source/view/MainFrame.cc"
+},
+{
+  "directory": "/home/jdratlif/git/z2se/build",
+  "command": "/usr/bin/c++   -DHAVE_CONFIG_H -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/lib/wx/include/gtk3-unicode-static-3.1 -isystem /home/jdratlif/wxWidgets/3.1.2/release-static/include/wx-3.1 -I/home/jdratlif/git/z2se/build -I/home/jdratlif/git/z2se/source   -pthread   -Wall -Wextra -pedantic -Werror -std=gnu++14 -o CMakeFiles/z2se.dir/source/res/resource.cpp.o -c /home/jdratlif/git/z2se/source/res/resource.cpp",
+  "file": "/home/jdratlif/git/z2se/source/res/resource.cpp"
+}
+]
