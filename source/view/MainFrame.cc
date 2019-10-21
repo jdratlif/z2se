@@ -533,7 +533,7 @@ void MainFrame::helpAbout(wxCommandEvent &) {
         wxT("z2se ")
         wxT(VERSION)
         wxT(" - Zelda II SRAM Editor\n")
-        wxT("Copyright (C) 2004-2005,2007-2008, 2019 emuWorks\n")
+        wxT("Copyright (C) 2019 emuWorks\n")
         wxT("http://games.technoplaza.net/"),
         wxT("About z2se..."), wxOK | wxICON_INFORMATION);
 }
