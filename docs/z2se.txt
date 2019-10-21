@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
-| Zelda II SRAM Editor 1.1a
-| Copyright (C) 2004-2005,2007-2008 emuWorks
+| Zelda II SRAM Editor 1.2
+| Copyright (C) 2004-2005,2007-2008, 2019 emuWorks
 | Written by John Ratliff
 | http://games.technoplaza.net/
 --------------------------------------------------------------------------------
@@ -11,54 +11,46 @@
 
   Zelda II SRAM Editor is a tool for editing Zelda II save state files used
   with NES emulators.
-  
+
   Instead of taking an emulator dependent save file such as Nesticle states or
   FCEU states, this program works on the emulator independent SRAM files which
   are used by the game internally and will therefore work on any emulator.
-  
+
   These SRAM files are generally named the same as the ROM with a .sav
   extention. For example, "Zelda II - The Adventure of Link (U).sav" is one
   possible example.
-  
+
 ----------------
 - Installation -
 ----------------
 
-  Binaries are available for Windows (2000 and later), Linux (requires GTK+ >=
-  2.0), and Mac OS X (Tiger or later). The source is also available if you want
-  to compile it yourself.
-  
-  To compile, you will need a modern C++ compiler and wxWidgets 2.8 or later.
-  
-  On most platforms, compiling is as easy as opening a terminal and running
-  ./configure && make. That should work on Linux, Mac OS X, and Windows with
-  mingw/msys. There are also Visual Studio project files in the vstudio
-  directory.
-  
-  For more complete compilation instructions, consult our compiling HOWTO at
-  http://games.technoplaza.net/compile.php.
-  
+  Binaries are available for Windows, macOS, and Linux. The Linux binaries
+  required GTK+ 3. The source is also available at
+  https://github.com/jdratlif/z2se
+
+  A compilation guide is available at http://code.technoplaza.net/compile.html.
+
 ---------
 - Usage -
 ---------
 
   Using the program should (I hope) be fairly straightforward. Start the program
   z2se either by double-clicking or from the command line.
-  
+
   Load the SRAM .sav file. For FCEU on Windows, this is in the FCEU directory
   in the SAV subdirectory. For FCEU on Unix, this is in the ~/.fceu directory. I
   don't know about other emulators because I don't use them. The program should
   work on any emulator that uses the battery backed RAM (SRAM), which nearly
   all modern ones do.
-  
+
   Once the file is open, it will load the game. If the SRAM file is not valid,
   or doesn't have a save game, the program will inform you and not load
   anything. Since Zelda II did not use a checksum value, it is possible to
   load an invalid file which will result in unpredictable behavior.
-  
+
   Most everything is editable. If you feel something is missing, or want to see
   something else in the program, contact me and maybe I'll add it.
-  
+
   When you load a .SAV file, it will make a backup in a file named the same as
   your SRAM file with a .bak on the end. If something goes wrong when you try
   to start your edited game, just delete the SRAM file and rename the backup to
@@ -73,20 +65,26 @@
 ---------
 
   Some important things to be aware of.
-  
+
   - This is BETA software. Your use of it is AT YOUR OWN RISK. I take no
     responsibility if this program screws up your data, or any other
     thing on your or any other computer. I'm pretty sure it won't, but don't
     blame me if it does!
-    
+
   - If you edit Magic or Life containers, it does not affect which containers
     are still available in the game. This means you can start a new game, change
     your containers to 8, and go find 4 more containers. DO NOT DO THIS! IT WILL
     CAUSE THE GAME TO CRASH! I may try to fix this in a future version.
-    
+
 --------------------
 - Revision History -
 --------------------
+
+  Version 1.2 - Sunday, October 20, 2019
+    - Updated for wxWidgets 3.1
+    - Updated for c++14
+    - Switched to cmake build system
+    - Put source on github
 
   Version 1.1a - Wednesday, December 17, 2008
     - Updated code to compile under wxWidgets 2.8.
@@ -94,7 +92,7 @@
     - Added upx compression to mac version.
     - Added icons for the mac version.
     - Updated compilation instructions.
-    
+
   Version 1.1 - Saturday, February 24, 2007
     - Major code cleanup.
     - Added Visual C++ 2005 project files.
@@ -103,10 +101,10 @@
   Version 1.0 - Thursday, August 4, 2005
     - Minor source improvements.
     - Added Linux GTK+ 1.2 and Mac OS X binaries.
-    
+
   Version 0.90 - Friday, December 10, 2004
     - Initial Public Release
-    
+
 -----------
 - License -
 -----------
@@ -114,7 +112,7 @@
   This program is free software released under the GNU General Public License.
   For more information, you can visit http://www.gnu.org/. For the terms of the
   license, you can visit http://resume.technoplaza.net/license/gnu-gpl.html
-  
+
 -------------------
 - Acknowledgments -
 -------------------
@@ -123,13 +121,12 @@
     - His save state hacking guide for Nesticle was invaluable in creating this
       program. I would have had to do all the research myself otherwise.
       http://db.gamefaqs.com/console/nes/file/zelda_2_hacking.txt
-  
+
 -----------------------
 - Contact Information -
 -----------------------
 
   The latest version of this program can always be found at emuWorks
   http://games.technoplaza.net/
-  
-  You can contact me at http://www.technoplaza.net/feedback.php
 
+  You can contact me at http://www.technoplaza.net/feedback.php
