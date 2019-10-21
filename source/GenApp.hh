@@ -36,21 +36,6 @@ namespace emuWorks {
         DECLARE_CLASS(GenApp)
 
       public:
-        /// The short name of the application.
-        static const wxString *APP_NAME;
-
-        /// The full name of the application
-        static const wxString *APP_FULL_NAME;
-
-        /// The version of the application.
-        static const wxString *APP_VERSION;
-
-        /// The copyright notice for the application.
-        static const wxString *APP_COPYRIGHT;
-
-        /// The website URL for this application.
-        static const wxString *APP_URL;
-
         /**
          * Called by wxWidgets to start initialization of the application.
          *

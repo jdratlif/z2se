@@ -37,19 +37,6 @@
 
 using namespace emuWorks;
 
-const wxString *GenApp::APP_NAME = new wxString(wxT("z2se"));
-
-const wxString *GenApp::APP_FULL_NAME =
-    new wxString(wxT("Zelda II SRAM Editor"));
-
-const wxString *GenApp::APP_VERSION = new wxString(wxT("1.1a"));
-
-const wxString *GenApp::APP_COPYRIGHT =
-    new wxString(wxT("Copyright (C) 2004-2005,2007-2008 emuWorks"));
-
-const wxString *GenApp::APP_URL =
-    new wxString(wxT("http://games.technoplaza.net/"));
-
 // prototype for InitXmlResource function
 void InitXmlResource();
 

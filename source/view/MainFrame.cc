@@ -22,6 +22,8 @@
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
+#else
+    #define VERSION "1.0-~git"
 #endif
 
 #include <wx/wxprec.h>
@@ -527,13 +529,13 @@ void MainFrame::multiChange(wxCommandEvent &event) {
 }
 
 void MainFrame::helpAbout(wxCommandEvent &) {
-    wxString msg = wxString(
-        *GenApp::APP_FULL_NAME + wxT(' ') + *GenApp::APP_VERSION + wxT('\n') +
-        *GenApp::APP_COPYRIGHT + wxT('\n') + *GenApp::APP_URL);
-    wxString title =
-        wxString(wxT("About ") + *GenApp::APP_FULL_NAME + wxT("..."));
-
-    wxMessageBox(msg, title, wxOK | wxICON_INFORMATION, this);
+    wxMessageBox(
+        wxT("z2se ")
+        wxT(VERSION)
+        wxT(" - Zelda II SRAM Editor\n")
+        wxT("Copyright (C) 2004-2005,2007-2008, 2019 emuWorks\n")
+        wxT("http://games.technoplaza.net/"),
+        wxT("About z2se..."), wxOK | wxICON_INFORMATION);
 }
 
 void MainFrame::nameChange(wxCommandEvent &) {
